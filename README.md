@@ -1,7 +1,7 @@
 # Valien – AI Automation Agency website
 
 Marketing site for Valien, built with **React 18 + Vite 6** and plain **CSS Modules**.
-Deployed to **GitHub Pages** automatically on every push to `main`.
+Hosted on **Vercel**: every push to `main` goes live, and every pull request gets a preview URL.
 
 ## Quick start
 
@@ -12,14 +12,14 @@ npm install
 npm run dev        # http://localhost:3000
 ```
 
-| Command                | What it does                                 |
-| ---------------------- | -------------------------------------------- |
-| `npm run dev`          | Start the dev server with hot reload         |
-| `npm run build`        | Production build into `dist/`                |
-| `npm run preview`      | Serve the production build locally           |
-| `npm run lint`         | ESLint (also runs in CI before every deploy) |
-| `npm run format`       | Format everything with Prettier              |
-| `npm run format:check` | Check formatting without writing             |
+| Command                | What it does                         |
+| ---------------------- | ------------------------------------ |
+| `npm run dev`          | Start the dev server with hot reload |
+| `npm run build`        | Production build into `dist/`        |
+| `npm run preview`      | Serve the production build locally   |
+| `npm run lint`         | ESLint (also runs in CI on every PR) |
+| `npm run format`       | Format everything with Prettier      |
+| `npm run format:check` | Check formatting without writing     |
 
 ## Project structure
 
@@ -73,17 +73,19 @@ in `src/components/ui/Icon.jsx`, then use that name in data files (`icon: 'rocke
   endpoint, or your own API.
 - If it is not set, the visitor's email client opens with the message pre-filled.
 
-Locally: copy `.env.example` to `.env.local`. For the live site, add `VITE_CONTACT_ENDPOINT` as a
-repository variable and pass it to the build step in `.github/workflows/deploy.yml`.
+Locally: copy `.env.example` to `.env.local`. For the live site, add `VITE_CONTACT_ENDPOINT` in
+**Vercel → Project → Settings → Environment Variables**, then redeploy.
 
 ## Deployment
 
-`.github/workflows/deploy.yml` runs on every push to `main`: install → lint → build → deploy
-to GitHub Pages. In the repository settings, **Pages → Source** must be set to **GitHub Actions**.
+Vercel builds the site itself (`npm run build` → `dist/`) using `vercel.json`:
 
-The base path (`/valien/` for a project page, `/` for a custom domain) is detected automatically
-and passed to Vite as `BASE_PATH`. The build also writes `dist/404.html`, so deep links like
-`/contact` work on GitHub Pages.
+- Pushes to `main` deploy to production; pull requests get their own preview deployment.
+- All routes are rewritten to `index.html`, so deep links like `/contact` work on refresh.
+- Hashed files in `/assets/` are cached for a year.
+
+`.github/workflows/ci.yml` runs lint, format check and a build on every pull request,
+so broken code is caught before it reaches Vercel.
 
 ## Content still to replace
 
