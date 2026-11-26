@@ -1,0 +1,66 @@
+.marquee {
+  overflow: hidden;
+  --gap: 2rem;
+}
+
+.horizontal.fade {
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.vertical.fade {
+  mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: var(--gap);
+}
+
+.vertical .track {
+  flex-direction: column;
+  width: auto;
+  height: max-content;
+}
+
+.group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--gap);
+}
+
+.vertical .group {
+  flex-direction: column;
+}
+
+.left {
+  animation: scroll-x var(--duration) linear infinite;
+}
+
+.right {
+  animation: scroll-x var(--duration) linear infinite reverse;
+}
+
+.up {
+  animation: scroll-y var(--duration) linear infinite;
+}
+
+.down {
+  animation: scroll-y var(--duration) linear infinite reverse;
+}
+
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-x {
+  to {
+    transform: translateX(calc(-50% - var(--gap) / 2));
+  }
+}
+
+@keyframes scroll-y {
+  to {
+    transform: translateY(calc(-50% - var(--gap) / 2));
+  }
+}

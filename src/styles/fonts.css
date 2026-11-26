@@ -1,0 +1,17 @@
+/* Inter (body), Manrope (numbers & labels) and Playpen Sans (quotes) come from @fontsource.
+   Satoshi (headings) is a Fontshare font, so it is bundled locally. */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/manrope/600.css';
+@import '@fontsource/manrope/700.css';
+@import '@fontsource/playpen-sans/500.css';
+
+@font-face {
+  font-family: 'Satoshi';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/satoshi-medium.woff2') format('woff2');
+}

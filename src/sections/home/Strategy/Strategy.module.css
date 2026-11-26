@@ -1,0 +1,230 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem;
+}
+
+.card h3 {
+  font-size: var(--text-xl);
+}
+
+.card > p {
+  margin-top: 0.75rem;
+}
+
+.visual {
+  position: relative;
+  height: 300px;
+  margin-top: 1.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* ---------- Growth chart ---------- */
+.chart {
+  position: relative;
+  height: 100%;
+  padding: 1.5rem 1.5rem 1rem 4rem;
+}
+
+.state {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-gray-100);
+  font-size: var(--text-sm);
+}
+
+.axis {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 4.5rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.axis i {
+  width: 6px;
+  border-radius: 2px;
+  background: var(--color-gray-300);
+}
+
+.axis i:nth-child(1) {
+  height: 150px;
+}
+
+.axis i:nth-child(2) {
+  height: 170px;
+}
+
+.axis i:nth-child(3) {
+  height: 190px;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 3.5rem;
+}
+
+.track {
+  position: relative;
+  height: 40px;
+  border-radius: 6px;
+  background: var(--color-gray-200);
+  border: 1px solid var(--color-gray-300);
+}
+
+.bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-inline: 1rem;
+  min-width: max-content;
+  border-radius: 6px;
+  background: var(--color-mint);
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0;
+  white-space: nowrap;
+  transition: width 0.9s var(--ease-out);
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 1.25rem 0 0 -2.5rem;
+}
+
+.lines i {
+  height: 4px;
+  border-radius: 4px;
+  background: var(--color-gray-200);
+}
+
+.lines i:nth-child(2) {
+  width: 80%;
+}
+
+.lines i:nth-child(3) {
+  width: 66%;
+}
+
+/* ---------- Content folder ---------- */
+.folderScene {
+  position: relative;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 20%, rgb(150 255 176 / 0.25), transparent 60%);
+}
+
+.paper {
+  position: absolute;
+  width: 46%;
+  height: 52%;
+  border-radius: 14px;
+  border: 1.5px solid #555;
+  background: linear-gradient(180deg, #fafafa, #e8e8e8);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.paperLeft {
+  transform: translateX(-34%) rotate(-6deg);
+}
+
+.paperRight {
+  transform: translateX(34%) rotate(5deg);
+}
+
+.visual:hover .paperLeft {
+  transform: translateX(-46%) rotate(-10deg);
+}
+
+.visual:hover .paperRight {
+  transform: translateX(46%) rotate(9deg);
+}
+
+.folder {
+  position: relative;
+  width: 58%;
+  height: 66%;
+  z-index: 1;
+  animation: folder-bob 5s ease-in-out infinite;
+}
+
+.folderTab {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 36%;
+  border: 1.5px solid #3a5;
+  border-radius: 14px 14px 0 0;
+  background: #8fd6a0;
+  clip-path: polygon(0 0, 40% 0, 50% 30%, 100% 30%, 100% 100%, 0 100%);
+}
+
+.folderFront {
+  position: absolute;
+  inset: 14% 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  place-items: center;
+  padding: 1rem;
+  border: 1.5px solid #2c7a3f;
+  border-radius: 14px;
+  background: var(--color-mint);
+  box-shadow: 0 10px 24px -10px rgb(0 0 0 / 0.35);
+}
+
+@keyframes folder-bob {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 860px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.5rem 1.25rem;
+  }
+  .chart {
+    padding-left: 3rem;
+  }
+  .axis {
+    left: 1rem;
+  }
+}

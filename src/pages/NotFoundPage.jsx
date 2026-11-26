@@ -1,73 +1,26 @@
-import React, { useEffect, useState, useRef } from 'react';
-import rawHtml from '../content/404.html?raw';
-import { initAnimations } from '../utils/animations';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import cloud from '@/assets/images/hero/cloud.webp';
+import Button from '@/components/ui/Button';
+import styles from './NotFoundPage.module.css';
 
-export default function NotFoundPage({ navigate }) {
-  const containerRef = useRef(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const root = containerRef.current;
-
-    const cleanupAnimations = initAnimations(root);
-
-    // Mobile Hamburger
-    const hamburgerBtns = root.querySelectorAll('[data-vln-name="Hamburger"]');
-    hamburgerBtns.forEach(btn => {
-      btn.style.cursor = 'pointer';
-      btn.onclick = (e) => {
-        e.stopPropagation();
-        setMobileMenuOpen(prev => !prev);
-      };
-    });
-
-    // Back to Home button hook
-    const backBtns = root.querySelectorAll('a, button, [data-vln-name="Secondary btn"]');
-    backBtns.forEach(btn => {
-      btn.style.cursor = 'pointer';
-    });
-
-    return () => {
-      cleanupAnimations();
-    };
-  }, []);
+export default function NotFoundPage() {
+  usePageTitle('Page not found');
 
   return (
-    <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
-      {/* Mobile Navigation Drawer */}
-      {mobileMenuOpen && (
-        <div className="mobile-nav-drawer">
-          <a
-            href="/"
-            onClick={(e) => {
-              e.preventDefault();
-              setMobileMenuOpen(false);
-              navigate('/');
-            }}
-          >
-            Home
-          </a>
-          <a
-            href="/contact"
-            className="mobile-nav-drawer-cta"
-            onClick={(e) => {
-              e.preventDefault();
-              setMobileMenuOpen(false);
-              navigate('/contact');
-            }}
-          >
-            Contact Us
-          </a>
+    <section className={styles.page}>
+      <div className="container">
+        <div className={styles.panel}>
+          <img src={cloud} alt="" className={styles.cloud} aria-hidden="true" />
+          <p className={styles.code}>404</p>
+          <h1 className={styles.title}>Oops! Page not found</h1>
+          <p className={styles.text}>
+            The page you are looking for either doesn’t exist or is currently not available.
+          </p>
+          <Button to="/" halo>
+            Go back to home
+          </Button>
         </div>
-      )}
-
-      {/* Main Extracted 404 Page DOM */}
-      <div
-        id="main"
-        ref={containerRef}
-        dangerouslySetInnerHTML={{ __html: rawHtml }}
-      />
-    </div>
+      </div>
+    </section>
   );
 }

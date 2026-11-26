@@ -1,0 +1,88 @@
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+  padding: 2rem 1.9rem;
+}
+
+.number {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  font-size: var(--text-sm);
+}
+
+.icon {
+  margin-block: 0.75rem 1rem;
+}
+
+.stepTitle {
+  font-size: var(--text-xl);
+}
+
+.stepText {
+  color: var(--color-text-muted);
+}
+
+.stepTag {
+  align-self: flex-start;
+  margin-top: 1rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  font-size: var(--text-sm);
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 3.5rem auto 0;
+}
+
+.stat {
+  min-width: 170px;
+  padding: 0.75rem 2rem;
+  text-align: center;
+}
+
+.stat + .stat {
+  border-left: 2px solid var(--color-gray-200);
+}
+
+.statValue {
+  font-family: var(--font-label);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.statLabel {
+  font-family: var(--font-label);
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .stat {
+    min-width: 0;
+    flex: 1;
+    padding-inline: 0.75rem;
+  }
+}
