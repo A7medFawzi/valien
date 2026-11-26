@@ -1,7 +1,8 @@
 import { Check, Stack, X } from '@phosphor-icons/react';
 import { comparison } from '@/data/comparison';
 import { site } from '@/config/site';
-import logoMark from '@/assets/images/brand/logo-mark.png';
+import Logo from '@/components/ui/Logo';
+import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Reveal from '@/components/ui/Reveal';
 import styles from './Comparison.module.css';
@@ -11,13 +12,16 @@ export default function Comparison() {
 
   return (
     <section id="comparison" className="section">
+      <SectionGlow variant="center" />
       <div className="container">
         <SectionHeading badge={badge} title={title} description={description} />
 
         <div className={styles.columns}>
           <Reveal className={styles.column}>
             <h3 className={styles.columnTitle}>
-              <img src={logoMark} alt="" width="28" height="28" />
+              <span className={styles.mark}>
+                <Logo variant="mark" tone="mint" />
+              </span>
               {site.name}
             </h3>
             <ul className={`${styles.list} ${styles.us}`}>

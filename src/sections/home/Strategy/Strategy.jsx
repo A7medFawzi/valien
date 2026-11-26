@@ -14,6 +14,7 @@ import { useInterval } from '@/hooks/useInterval';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import Reveal from '@/components/ui/Reveal';
+import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Strategy.module.css';
 
@@ -38,7 +39,7 @@ function GrowthChart({ before, after }) {
         {bars.map((bar, i) => (
           <div key={i} className={styles.track}>
             <span className={styles.bar} style={{ width: `${bar.value}%` }}>
-              {bar.label}
+              <span className={styles.pill}>{bar.label}</span>
             </span>
           </div>
         ))}
@@ -74,6 +75,7 @@ export default function Strategy() {
 
   return (
     <section id="strategy" className="section">
+      <SectionGlow variant="split" />
       <div className="container">
         <SectionHeading title={title} />
 

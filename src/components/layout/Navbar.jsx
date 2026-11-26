@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { navLinks } from '@/config/site';
-import logoMark from '@/assets/images/brand/logo-mark.png';
 import Button from '../ui/Button';
+import Logo from '../ui/Logo';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -21,7 +21,7 @@ export default function Navbar() {
     <header className={styles.wrapper}>
       <div className={`${styles.bar} ${open ? styles.open : ''}`}>
         <Link to="/" className={styles.logo} aria-label="Valien home" onClick={close}>
-          <img src={logoMark} alt="" width="36" height="36" />
+          <Logo variant="mark" tone="mint" />
         </Link>
 
         <span className={styles.divider} aria-hidden="true" />

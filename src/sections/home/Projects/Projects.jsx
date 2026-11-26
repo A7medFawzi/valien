@@ -4,6 +4,7 @@ import { projects, projectsIntro } from '@/data/projects';
 import { useInterval } from '@/hooks/useInterval';
 import Card from '@/components/ui/Card';
 import Marquee from '@/components/ui/Marquee';
+import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Projects.module.css';
 
@@ -22,6 +23,7 @@ export default function Projects() {
 
   return (
     <section id="projects" className="section">
+      <SectionGlow variant="split" />
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.intro}>

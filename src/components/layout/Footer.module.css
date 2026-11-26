@@ -1,6 +1,6 @@
 .footer {
   margin-top: var(--section-space);
-  background: linear-gradient(180deg, var(--color-gray-200) 0%, var(--color-gray-50) 100%);
+  background: linear-gradient(180deg, var(--color-mint-50) 0%, var(--color-white) 100%);
 }
 
 .inner {
@@ -18,9 +18,19 @@
   flex-wrap: wrap;
 }
 
+/* Logo pill: mint logo on black (approved brand combination). */
 .logo {
-  height: 40px;
-  width: auto;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-primary);
+  box-shadow: var(--shadow-button);
+}
+
+.logo > span {
+  height: 22px;
 }
 
 .socials {

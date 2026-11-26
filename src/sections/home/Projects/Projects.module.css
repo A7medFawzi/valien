@@ -19,6 +19,7 @@
 
 .tab {
   display: flex;
+  box-shadow: var(--shadow-card);
   justify-content: space-between;
   padding: 1rem;
   border-radius: var(--radius-sm);
@@ -37,10 +38,13 @@
 }
 
 .activeTab {
-  color: var(--color-ink-80);
-  border-color: rgb(34 197 94 / 0.45);
+  color: var(--color-ink);
+  font-weight: 600;
+  border-color: var(--color-white);
   background: var(--color-white);
-  box-shadow: var(--shadow-mint);
+  box-shadow:
+    inset 3px 0 0 var(--color-accent),
+    var(--shadow-raised);
 }
 
 .preview {

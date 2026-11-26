@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CheckCircle, HandHeart, Lightning } from '@phosphor-icons/react';
 import { plans, pricingIntro } from '@/data/pricing';
 import Button from '@/components/ui/Button';
+import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import Reveal from '@/components/ui/Reveal';
 import styles from './Pricing.module.css';
@@ -14,6 +15,7 @@ export default function Pricing() {
 
   return (
     <section id="pricing" className="section">
+      <SectionGlow variant="center" />
       <div className="container">
         <SectionHeading {...heading} />
 

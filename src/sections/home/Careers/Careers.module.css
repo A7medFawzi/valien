@@ -27,10 +27,9 @@
   place-items: center;
   padding: 3rem 2rem;
   border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, #f2f4f3 0%, #e9ece9 100%);
-  box-shadow:
-    var(--shadow-card),
-    0 3px 0 rgb(150 255 176 / 0.6);
+  border: 1px solid var(--color-white);
+  background: var(--surface-highlight);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
   text-align: center;
 }
@@ -41,7 +40,6 @@
   margin: auto;
   width: 80%;
   opacity: 0.6;
-  filter: brightness(1.35);
 }
 
 .quoteCard blockquote {

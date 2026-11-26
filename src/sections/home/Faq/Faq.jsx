@@ -3,6 +3,7 @@ import { EnvelopeSimple, Plus } from '@phosphor-icons/react';
 import { faqIntro, faqs } from '@/data/faq';
 import { site } from '@/config/site';
 import Button from '@/components/ui/Button';
+import SectionGlow from '@/components/ui/SectionGlow';
 import styles from './Faq.module.css';
 
 function FaqItem({ id, question, answer, open, onToggle }) {
@@ -43,6 +44,7 @@ export default function Faq() {
 
   return (
     <section id="faq" className="section">
+      <SectionGlow variant="split" />
       <div className="container">
         <div className={styles.header}>
           <h2 className={styles.title}>{faqIntro.title}</h2>

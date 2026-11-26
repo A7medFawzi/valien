@@ -2,6 +2,7 @@ import { integrations } from '@/data/integrations';
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import Marquee from '@/components/ui/Marquee';
+import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Integrations.module.css';
 
@@ -10,6 +11,7 @@ export default function Integrations() {
 
   return (
     <section id="integrations" className="section">
+      <SectionGlow variant="left" />
       <div className={`container ${styles.layout}`}>
         <div className={styles.copy}>
           <SectionHeading align="start" badge={badge} title={title} description={description} />

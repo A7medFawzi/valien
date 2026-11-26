@@ -6,6 +6,7 @@ import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import IconTile from '@/components/ui/IconTile';
 import Reveal from '@/components/ui/Reveal';
+import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Careers.module.css';
 
@@ -14,6 +15,7 @@ export default function Careers() {
 
   return (
     <section id="careers" className="section">
+      <SectionGlow variant="center" />
       <div className="container">
         <SectionHeading title={title} />
 

@@ -58,6 +58,8 @@ No component code needs to change.
 **Add, remove or reorder home-page sections** – `src/pages/HomePage.jsx`.
 
 **Change colors, fonts, spacing** – `src/styles/tokens.css`. Components only use these variables.
+The layout follows the Landeros template with the Valien palette (black, mint, bright gray);
+see `docs/brand.md` for the color mapping and logo usage.
 
 **Add an icon** – icons come from [Phosphor](https://phosphoricons.com). Register a short name
 in `src/components/ui/Icon.jsx`, then use that name in data files (`icon: 'rocket'`).

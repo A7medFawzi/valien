@@ -1,7 +1,9 @@
 import { ArrowUpRight } from '@phosphor-icons/react';
 import { community } from '@/data/community';
+import { socialLinks } from '@/config/site';
 import Card from '@/components/ui/Card';
 import Icon from '@/components/ui/Icon';
+import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Community.module.css';
 
@@ -10,6 +12,7 @@ export default function Community() {
 
   return (
     <section id="community" className="section">
+      <SectionGlow variant="left" />
       <div className="container">
         <div className={styles.header}>
           <SectionHeading align="start" badge={badge} title={title} description={description} />
@@ -48,6 +51,24 @@ export default function Community() {
             </li>
           ))}
         </ul>
+
+        <div className={styles.socials}>
+          <span>Socials :</span>
+          <ul>
+            {socialLinks.map((social) => (
+              <li key={social.label}>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                >
+                  <Icon name={social.icon} size={18} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

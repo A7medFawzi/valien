@@ -2,6 +2,7 @@ import { testimonials, testimonialsIntro } from '@/data/testimonials';
 import Card from '@/components/ui/Card';
 import Icon from '@/components/ui/Icon';
 import Marquee from '@/components/ui/Marquee';
+import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Testimonials.module.css';
 
@@ -10,6 +11,7 @@ export default function Testimonials() {
 
   return (
     <section id="reviews" className="section">
+      <SectionGlow variant="split" />
       <div className="container">
         <SectionHeading {...heading} />
       </div>

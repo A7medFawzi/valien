@@ -17,6 +17,7 @@ import Icon from '@/components/ui/Icon';
 import IconTile from '@/components/ui/IconTile';
 import Marquee from '@/components/ui/Marquee';
 import Reveal from '@/components/ui/Reveal';
+import SectionGlow from '@/components/ui/SectionGlow';
 import styles from './Services.module.css';
 
 const orbitIcons = [CalendarCheck, EnvelopeSimple, ChatsCircle, UserFocus];
@@ -99,6 +100,7 @@ export default function Services() {
 
   return (
     <section id="services" className="section">
+      <SectionGlow variant="right" />
       <div className={`container ${styles.grid}`}>
         <div className={styles.intro}>
           <h2 className={styles.title}>{title}</h2>

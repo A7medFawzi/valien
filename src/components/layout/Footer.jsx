@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { footerLinks, site, socialLinks } from '@/config/site';
-import logoWordmark from '@/assets/images/brand/logo-wordmark.webp';
 import Icon from '../ui/Icon';
+import Logo from '../ui/Logo';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -11,14 +11,8 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.top}>
-          <Link to="/" aria-label={`${site.name} home`}>
-            <img
-              src={logoWordmark}
-              alt={site.name}
-              width="96"
-              height="40"
-              className={styles.logo}
-            />
+          <Link to="/" aria-label={`${site.name} home`} className={styles.logo}>
+            <Logo tone="mint" />
           </Link>
           <ul className={styles.socials}>
             {socialLinks.map((s) => (

@@ -4,6 +4,7 @@ import { useCountUp } from '@/hooks/useCountUp';
 import Card from '@/components/ui/Card';
 import Icon from '@/components/ui/Icon';
 import Reveal from '@/components/ui/Reveal';
+import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Process.module.css';
 
@@ -26,6 +27,7 @@ export default function Process() {
 
   return (
     <section id="process" className="section">
+      <SectionGlow variant="center" />
       <div className="container">
         <SectionHeading badge={badge} title={title} description={description} />
 

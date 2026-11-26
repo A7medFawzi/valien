@@ -8,10 +8,9 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   text-align: center;
-  background: linear-gradient(180deg, #d8fbe2 0%, #eef3ef 100%);
-  box-shadow:
-    var(--shadow-card),
-    0 4px 0 rgb(150 255 176 / 0.5);
+  border: 1px solid var(--color-white);
+  background: var(--surface-highlight);
+  box-shadow: var(--shadow-raised);
 }
 
 .panel > :not(.cloud) {
@@ -22,7 +21,6 @@
   position: absolute;
   width: 420px;
   opacity: 0.8;
-  filter: brightness(1.4);
   pointer-events: none;
 }
 
@@ -59,6 +57,8 @@
   gap: 0.5rem;
   padding: 0.4rem 0.9rem;
   border-radius: var(--radius-sm);
-  background: rgb(255 255 255 / 0.6);
+  background: rgb(255 255 255 / 0.7);
+  color: var(--color-primary);
   font-size: var(--text-sm);
+  box-shadow: var(--shadow-card);
 }
