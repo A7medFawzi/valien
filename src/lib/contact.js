@@ -1,4 +1,4 @@
-import { site } from '@/config/site';
+import { contact } from '@/config/site';
 
 const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT;
 
@@ -9,6 +9,8 @@ const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT;
  *   the fields are POSTed there as JSON.
  * - Otherwise the visitor's email client opens with the message pre-filled,
  *   so no message is ever silently lost.
+ *
+ * `subject` carries the selected service area.
  *
  * Resolves to "sent" or "mailto"; throws if the endpoint rejects the request.
  */
@@ -24,7 +26,7 @@ export async function submitContact({ name, email, subject, message }) {
   }
 
   const body = `${message}\n\n— ${name} (${email})`;
-  const href = `mailto:${site.email}?subject=${encodeURIComponent(subject || 'New enquiry')}&body=${encodeURIComponent(body)}`;
+  const href = `mailto:${contact.email.value}?subject=${encodeURIComponent(subject || 'New enquiry')}&body=${encodeURIComponent(body)}`;
   window.location.href = href;
   return 'mailto';
 }

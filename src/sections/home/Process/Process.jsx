@@ -1,21 +1,28 @@
 import { processSection } from '@/data/process';
+import { publishable } from '@/config/publishing';
 import { useInView } from '@/hooks/useInView';
 import { useCountUp } from '@/hooks/useCountUp';
 import Card from '@/components/ui/Card';
 import Icon from '@/components/ui/Icon';
-import Reveal from '@/components/ui/Reveal';
+import PendingTag from '@/components/ui/PendingTag';
+import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Process.module.css';
 
-function Stat({ value, suffix = '', decimals = 0, label, start }) {
-  const current = useCountUp(value, { start, decimals });
+function Stat({ value, suffix = '', decimals = 0, label, pending, start }) {
+  const current = Number(useCountUp(value, { start, decimals }));
+  const formatted = current.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
   return (
     <div className={styles.stat}>
       <p className={styles.statValue}>
-        {current}
+        {formatted}
         {suffix}
       </p>
       <p className={styles.statLabel}>{label}</p>
+      {pending && <PendingTag />}
     </div>
   );
 }
@@ -26,12 +33,13 @@ export default function Process() {
 
   return (
     <section id="process" className="section">
+      <SectionGlow variant="center" />
       <div className="container">
         <SectionHeading badge={badge} title={title} description={description} />
 
         <ol className={styles.steps}>
           {steps.map((step, i) => (
-            <Reveal as="li" key={step.title} delay={i * 120}>
+            <li key={step.title}>
               <Card interactive className={styles.step}>
                 <span className={styles.number}>{i + 1}</span>
                 <Icon name={step.icon} size={28} className={styles.icon} />
@@ -39,12 +47,12 @@ export default function Process() {
                 <p className={styles.stepText}>{step.text}</p>
                 <span className={styles.stepTag}>Step {i + 1}</span>
               </Card>
-            </Reveal>
+            </li>
           ))}
         </ol>
 
         <div ref={statsRef} className={styles.stats}>
-          {stats.map((stat) => (
+          {publishable(stats).map((stat) => (
             <Stat key={stat.label} {...stat} start={statsInView} />
           ))}
         </div>

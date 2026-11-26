@@ -1,0 +1,58 @@
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glow::before,
+.glow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: min(720px, 80vw);
+  aspect-ratio: 1.4;
+  border-radius: 50%;
+  translate: -50% -50%;
+}
+
+.glow::before {
+  background: radial-gradient(closest-side, var(--color-mint-100), transparent);
+  opacity: 0.9;
+}
+
+.glow::after {
+  background: radial-gradient(closest-side, var(--color-gray-200), transparent);
+}
+
+.split::before {
+  left: 35%;
+}
+.split::after {
+  left: 68%;
+}
+
+.center::before {
+  left: 45%;
+}
+.center::after {
+  left: 58%;
+  top: 60%;
+}
+
+.left::before {
+  left: 25%;
+}
+.left::after {
+  left: 45%;
+  top: 70%;
+}
+
+.right::before {
+  left: 70%;
+}
+.right::after {
+  left: 50%;
+  top: 70%;
+}

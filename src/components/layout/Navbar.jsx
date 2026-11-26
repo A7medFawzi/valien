@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { navLinks } from '@/config/site';
-import logoMark from '@/assets/images/brand/logo-mark.png';
+import { mainNav, primaryCta, withDestination } from '@/config/navigation';
 import Button from '../ui/Button';
+import Logo from '../ui/Logo';
 import styles from './Navbar.module.css';
+
+const navLinks = withDestination(mainNav);
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -21,7 +23,7 @@ export default function Navbar() {
     <header className={styles.wrapper}>
       <div className={`${styles.bar} ${open ? styles.open : ''}`}>
         <Link to="/" className={styles.logo} aria-label="Valien home" onClick={close}>
-          <img src={logoMark} alt="" width="36" height="36" />
+          <Logo variant="mark" tone="mint" />
         </Link>
 
         <span className={styles.divider} aria-hidden="true" />
@@ -38,8 +40,8 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <Button to="/#pricing" className={styles.cta}>
-          Get Started
+        <Button to={primaryCta.to} className={styles.cta}>
+          {primaryCta.label}
         </Button>
 
         <button
@@ -64,8 +66,8 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <Button to="/#pricing" block onClick={close}>
-            Get Started
+          <Button to={primaryCta.to} block onClick={close}>
+            {primaryCta.label}
           </Button>
         </nav>
       </div>

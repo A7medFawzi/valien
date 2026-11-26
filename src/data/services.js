@@ -1,57 +1,80 @@
+export const servicesIntro = {
+  badge: 'Our Services',
+  title: 'What we build.',
+  description:
+    'Software solutions designed around your business requirements, customers and everyday operations.',
+};
+
 export const services = {
-  title: 'AI Automation Services',
-  highlights: [
-    { label: 'Make Business Ease', text: 'Simplify your process with automation.' },
-    { label: 'Insights Drive Growth', text: 'Leverage actionable data to scale with AI.' },
-  ],
-  features: [
-    {
-      icon: 'database',
-      title: 'Data-driven',
-      text: 'Turn raw data into actionable insights that drive smarter decisions and measurable growth.',
-    },
-    {
-      icon: 'chart',
-      title: 'Efficient Growth',
-      text: 'Work smarter, not harder. Unlock faster results and lower costs with AI-powered efficiency.',
-    },
-  ],
-  workflow: {
-    title: 'Workflow Automation & Optimization',
-    text: 'Streamline repetitive tasks & keep your business running on autopilot.',
+  web: {
+    icon: 'browser',
+    title: 'Web Development',
+    text: 'Websites and web platforms designed to connect your business with its customers.',
+    concepts: [
+      'Responsive websites',
+      'Corporate platforms',
+      'Web applications',
+      'Customer portals',
+    ],
   },
-  customModels: {
-    title: 'Custom AI Model Development',
-    text: 'Get AI solutions built around your unique needs.',
+  mobile: {
+    icon: 'mobile',
+    title: 'Mobile App Development',
+    text: 'Mobile applications built around your users and business needs.',
+    concepts: ['iOS', 'Android', 'Mobile interfaces', 'Cross-platform apps'],
   },
-  chatbots: {
-    title: 'Chatbots & virtual assistants',
-    text: 'Engage customers 24/7 with intelligent virtual assistants.',
+  systems: {
+    title: 'Business Systems',
+    text: 'Custom software that brings your operations, teams and business data together.',
+    label: 'Business Software',
+    nodes: [
+      { icon: 'erp', label: 'ERP' },
+      { icon: 'crm', label: 'CRM' },
+      { icon: 'inventory', label: 'Inventory' },
+      { icon: 'dashboard', label: 'Dashboards' },
+    ],
   },
-  tags: [
-    { icon: 'graph', label: 'Data-Driven Decisions' },
-    { icon: 'smiley', label: 'Personalized Experiences' },
-    { icon: 'gear', label: 'Automation' },
-    { icon: 'stack', label: 'Scalable Solutions' },
-    { icon: 'lightning', label: 'Real-Time Insights' },
-    { icon: 'robot', label: 'Virtual Assistance' },
-    { icon: 'money', label: 'Cost Effective' },
-    { icon: 'rocket', label: 'Faster Innovation' },
+  saas: {
+    title: 'SaaS & Product Development',
+    text: 'From early-stage ideas to scalable software products, built for real users.',
+    fileName: 'workspaces.js',
+  },
+  commerce: {
+    title: 'E-commerce Solutions',
+    text: 'Digital commerce platforms built around the way your business sells.',
+    header: 'Orders & Products',
+    products: ['Product management', 'Order management'],
+    search: 'Search products',
+    action: 'Order',
+  },
+  keywords: [
+    { icon: 'code', label: 'Custom Software' },
+    { icon: 'browser', label: 'Web Platforms' },
+    { icon: 'mobile', label: 'Mobile Apps' },
+    { icon: 'dashboard', label: 'Business Systems' },
+    { icon: 'cart', label: 'E-commerce' },
+    { icon: 'stack', label: 'SaaS Products' },
+    { icon: 'design', label: 'UI/UX Design' },
+    { icon: 'api', label: 'API Integration' },
   ],
 };
 
-/** Code shown in the "Custom AI Model Development" card. */
-export const sampleCode = `class AutomationAgent:
-    def __init__(self, activation_limit):
-        self.activation_limit = activation_limit
-        self.current_mode = "idle"
+/**
+ * Example code in the SaaS card: creating a workspace for a new tenant in a
+ * multi-tenant application. Generic, valid JavaScript – no client code or secrets.
+ */
+export const sampleCode = `export async function createWorkspace(db, owner, plan) {
+  const workspace = await db.workspaces.insert({
+    name: \`\${owner.company} workspace\`,
+    ownerId: owner.id,
+    plan,
+  });
 
-    def evaluate_task(self, workload_value):
-        if workload_value > self.activation_limit:
-            self.current_mode = "engaged"
-            return "Automation agent has been successfully activated!"
-        else:
-            return "No activation needed. Agent stays idle."
+  await db.members.insert({
+    workspaceId: workspace.id,
+    userId: owner.id,
+    role: 'admin',
+  });
 
-    def get_current_mode(self):
-        return f"Current operational mode: {self.current_mode}"`;
+  return workspace;
+}`;

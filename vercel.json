@@ -8,6 +8,14 @@
     {
       "source": "/assets/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*)",
+      "missing": [
+        { "type": "host", "value": "valien.tech" },
+        { "type": "host", "value": "www.valien.tech" }
+      ],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ]
 }

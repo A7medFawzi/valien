@@ -11,31 +11,6 @@
   gap: 1.5rem;
 }
 
-.title {
-  font-size: var(--text-2xl);
-}
-
-.highlights {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.highlights li {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.highlights svg {
-  flex-shrink: 0;
-  color: var(--color-ink-60);
-}
-
-.highlights strong {
-  font-weight: 600;
-}
-
 .features {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -54,6 +29,23 @@
 .feature h3 {
   margin-top: 1.25rem;
   font-size: var(--text-xl);
+}
+
+.concepts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.concepts li {
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  font-size: var(--text-xs);
+  color: var(--color-ink-80);
 }
 
 .feature p {
@@ -77,9 +69,8 @@
 }
 
 .visual {
-  flex: 1;
+  flex: none;
   height: 320px;
-  min-height: 320px;
   margin-top: 1.75rem;
   border-radius: var(--radius-lg);
   background: var(--color-white);
@@ -89,77 +80,64 @@
 
 /* Workflow orbit */
 .orbit {
-  position: relative;
+  display: block;
+  width: 100%;
   height: 100%;
 }
 
-.orbitRing {
-  position: absolute;
-  left: 50%;
-  top: 18%;
-  width: 440px;
-  aspect-ratio: 1;
-  translate: -50% 0;
-  border-radius: 50%;
-  background: radial-gradient(
-    closest-side,
-    transparent 62%,
-    rgb(150 255 176 / 0.25) 63%,
-    rgb(150 255 176 / 0.12) 100%
-  );
-  animation: spin 40s linear infinite;
+.orbitBand {
+  fill: var(--color-mint-100);
+  opacity: 0.8;
 }
 
 .orbitCore {
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  width: 280px;
-  aspect-ratio: 1;
-  translate: -50% 0;
-  border-radius: 50%;
-  background: var(--color-gray-200);
+  fill: var(--color-white);
+}
+
+.orbitLink {
+  fill: none;
+  stroke: var(--color-gray-300);
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 
 .orbitNode {
-  --angle: calc(-160deg + var(--i) * 46deg);
-  position: absolute;
-  left: 50%;
-  top: calc(18% + 220px);
-  display: grid;
-  place-items: center;
-  width: 56px;
-  height: 56px;
-  margin: -28px;
-  border-radius: 50%;
-  background: var(--color-mint-soft);
-  box-shadow: 0 0 0 6px rgb(150 255 176 / 0.25);
-  transform: rotate(var(--angle)) translateX(200px) rotate(calc(var(--angle) * -1));
-  animation: bob 4s ease-in-out infinite;
-  animation-delay: calc(var(--i) * -1s);
+  color: var(--color-ink);
+  animation: node-float 3.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.8s);
+}
+
+.orbitNodeHalo {
+  fill: rgb(150 255 176 / 0.35);
+}
+
+.orbitNodeDot {
+  fill: var(--color-mint-50);
+  stroke: var(--color-white);
+  stroke-width: 1.5;
+}
+
+.orbitNodeLabel {
+  fill: var(--color-ink-60);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .orbitLabel {
-  position: absolute;
-  left: 50%;
-  bottom: 14px;
-  translate: -50% 0;
-  padding: 0.6rem 1.1rem;
+  display: grid;
+  place-items: center;
+  height: 100%;
   border-radius: var(--radius-sm);
-  background: var(--color-ink);
+  background: var(--surface-primary);
   color: var(--color-white);
-  font-size: var(--text-sm);
+  font-size: 14px;
+  box-shadow: var(--shadow-button);
 }
 
-@keyframes spin {
-  to {
-    rotate: 360deg;
-  }
-}
-
-@keyframes bob {
+@keyframes node-float {
   50% {
-    translate: 0 -6px;
+    transform: translate(0, -5px);
   }
 }
 
@@ -216,9 +194,39 @@
 .editorBody {
   position: relative;
   flex: 1;
+  display: flex;
   overflow: hidden;
-  border-left: 28px solid var(--color-gray-50);
-  mask-image: linear-gradient(180deg, transparent, #000 15%, #000 75%, transparent);
+}
+
+/* Line numbers 1–6 in small boxes, as in the original editor. */
+.gutter {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 30px;
+  padding: 0.75rem 0 0 0.45rem;
+  border-right: 1px solid var(--color-gray-200);
+  background: var(--color-gray-50);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.gutter li {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+}
+
+/* Fixed window over the scrolling code: dim top and bottom like the original. */
+.codeWindow {
+  flex: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 62%, transparent 95%);
 }
 
 .code {
@@ -227,7 +235,7 @@
   font-family: var(--font-body);
   font-size: 0.8rem;
   line-height: 1.7;
-  color: var(--color-ink-80);
+  color: var(--color-primary);
   white-space: pre;
   animation: code-scroll 22s linear infinite;
 }
@@ -260,7 +268,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--color-mint);
+  background: var(--color-accent);
   box-shadow: 0 0 0 4px rgb(150 255 176 / 0.3);
 }
 
@@ -286,9 +294,22 @@
   animation-delay: 0.4s;
 }
 
+@keyframes wobble {
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+.chatImages span:nth-child(2) {
+  animation-delay: -1.5s;
+}
+
 @keyframes typing {
   30% {
-    background: var(--color-green);
+    background: var(--color-primary);
     transform: scale(1.4);
   }
 }
@@ -305,7 +326,15 @@
   gap: 0.75rem;
 }
 
+.chatImages small {
+  font-size: var(--text-xs);
+  color: var(--color-ink-60);
+}
+
 .chatImages span {
+  gap: 0.35rem;
+  align-content: center;
+  animation: wobble 3s ease-in-out infinite;
   display: grid;
   place-items: center;
   height: 72px;
@@ -330,7 +359,7 @@
 .send {
   padding: 0.5rem 1.2rem;
   border-radius: var(--radius-sm);
-  background: var(--color-ink);
+  background: var(--surface-primary);
   color: var(--color-white);
 }
 
@@ -348,8 +377,9 @@
   gap: 0.6rem;
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--color-gray-300);
+  border: 1px solid var(--color-white);
   background: var(--surface-card);
+  box-shadow: var(--shadow-card);
   white-space: nowrap;
 }
 
@@ -365,9 +395,5 @@
   }
   .panel {
     padding: 1.5rem 1.25rem;
-  }
-  .orbitNode {
-    transform: rotate(var(--angle)) translateX(150px) rotate(calc(var(--angle) * -1));
-    top: calc(18% + 180px);
   }
 }

@@ -1,41 +1,44 @@
-import salesWorkflow from '@/assets/images/projects/sales-workflow.webp';
-import healthcareIntake from '@/assets/images/projects/healthcare-intake.webp';
-import productTagging from '@/assets/images/projects/product-tagging.webp';
+import mrPrice from '@/assets/images/projects/mrprice.webp';
+import alOwaydan from '@/assets/images/projects/al-owaydan.webp';
 
 export const projectsIntro = {
-  badge: 'Projects',
-  title: 'Our Latest Projects',
+  badge: 'Our Work',
+  title: 'Software in action.',
   description:
-    'See how we turn bold ideas into automated AI solutions carefully crafted to optimize, scale, and deliver measurable results.',
+    'Explore selected projects that reflect our experience across industries, technologies and business needs.',
 };
 
-/** TODO: placeholder case studies – replace with real projects and links. */
+/**
+ * Featured projects. Images are screenshots of the live project websites.
+ * `image: null` renders a neutral panel until an approved screenshot is supplied.
+ * `url: null` means there is no approved public link yet.
+ */
 export const projects = [
   {
-    client: 'ElevenLabs',
-    year: 2025,
-    title: 'Sales Workflow Optimization',
-    summary:
-      'We automated lead follow-ups and CRM tasks, reducing manual work by 70% and boosting qualified lead conversion rates.',
-    image: salesWorkflow,
-    href: 'https://www.behance.net/',
+    client: 'Mr Price',
+    category: 'B2B Commerce · Mobile Applications',
+    title: 'B2B Commerce Platform & Mobile App',
+    summary: 'A connected wholesale commerce platform serving more than 1,000 pharmacies.',
+    image: mrPrice,
+    imageAlt: 'Mr Price website homepage showing the B2B marketplace and mobile app',
+    url: 'https://www.mrprice.app/welcome',
   },
   {
-    client: 'MedAssist AI',
-    year: 2024,
-    title: 'Healthcare Intake Automation',
-    summary:
-      'Built an intake automation system that cut admin time by 55% and improved patient onboarding efficiency by 38% across all clinics.',
-    image: healthcareIntake,
-    href: 'https://www.behance.net/',
+    client: 'Alketab Academy',
+    category: 'Education · Business Systems',
+    title: 'Digital Learning Ecosystem',
+    summary: 'An education and management ecosystem serving more than 30,000 students.',
+    image: null, // Missing: approved screenshot
+    imageAlt: '',
+    url: null, // Missing: approved project URL
   },
   {
-    client: 'AutoTag Pro',
-    year: 2023,
-    title: 'E-commerce Product Tagging',
-    summary:
-      'Created an AI tool that auto-tagged 10K+ SKUs with 92% accuracy, cutting tagging time by 80% and boosting product discoverability by 30%.',
-    image: productTagging,
-    href: 'https://www.behance.net/',
+    client: 'Al-Owaydan',
+    category: 'Corporate Website · Saudi Arabia',
+    title: 'Corporate Digital Experience',
+    summary: 'A bilingual corporate website for a Saudi workforce solutions provider.',
+    image: alOwaydan,
+    imageAlt: 'Al-Owaydan corporate website homepage',
+    url: 'https://ealowedan.com/',
   },
 ];

@@ -1,3 +1,4 @@
+/* Primary button: template purple gradient → Valien black, with a mint icon. */
 .button {
   position: relative;
   display: inline-flex;
@@ -14,7 +15,7 @@
   transition:
     transform var(--duration) var(--ease-out),
     box-shadow var(--duration) var(--ease-out),
-    background-color var(--duration);
+    filter var(--duration);
 }
 
 .button:hover {
@@ -33,20 +34,14 @@
 
 .dark {
   color: var(--color-white);
-  background:
-    url('../../assets/images/textures/galaxy.webp') center / cover,
-    linear-gradient(180deg, #1d1f1d 0%, var(--color-ink) 100%);
-  border: 1px solid rgb(255 255 255 / 0.12);
+  background: var(--surface-primary);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.18),
-    0 6px 14px -6px rgb(0 0 0 / 0.45);
+    inset 0 1px 1px rgb(255 255 255 / 0.25),
+    var(--shadow-button);
 }
 
 .dark:hover {
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.18),
-    0 10px 22px -8px rgb(0 0 0 / 0.5),
-    0 0 0 4px rgb(150 255 176 / 0.25);
+  filter: brightness(1.25);
 }
 
 .light {
@@ -56,13 +51,13 @@
   box-shadow: var(--shadow-card);
 }
 
+/* Soft outer ring used on the main calls to action. */
 .halo {
-  outline: 4px solid rgb(255 255 255 / 0.85);
-  outline-offset: 0;
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.18),
+    inset 0 1px 1px rgb(255 255 255 / 0.25),
+    0 0 0 4px rgb(255 255 255 / 0.85),
     0 0 0 5px var(--color-gray-300),
-    0 10px 24px -8px rgb(0 0 0 / 0.35);
+    var(--shadow-button);
 }
 
 .block {
@@ -70,6 +65,6 @@
 }
 
 .icon {
-  color: var(--color-mint);
+  color: var(--color-accent);
   flex-shrink: 0;
 }

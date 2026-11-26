@@ -1,6 +1,6 @@
-# Valien – AI Automation Agency website
+# Valien – Software Solutions website
 
-Marketing site for Valien, built with **React 18 + Vite 6** and plain **CSS Modules**.
+Marketing site for Valien, a software engineering and digital design company. Built with **React 18 + Vite 6** and plain **CSS Modules**.
 Hosted on **Vercel**: every push to `main` goes live, and every pull request gets a preview URL.
 
 ## Quick start
@@ -28,13 +28,15 @@ src/
 ├── main.jsx                 # Entry point – mounts <App/> and global CSS
 ├── App.jsx                  # Routes: / , /contact , * (404)
 ├── config/
-│   └── site.js              # Brand name, email, phone, nav/footer/social links
+│   ├── site.js              # Company info, contact, social links, EVEXA, service areas
+│   ├── navigation.js        # Main nav, CTA, footer and legal links
+│   └── publishing.js        # Hides "pending" content on production (see below)
 ├── data/                    # ALL page copy lives here (one file per section)
 ├── pages/                   # HomePage, ContactPage, NotFoundPage
 ├── sections/home/           # One folder per home-page section (JSX + CSS Module)
 ├── components/
 │   ├── layout/              # Navbar, Footer, Layout, ScrollManager
-│   └── ui/                  # Button, Card, Badge, SectionHeading, Marquee, Reveal, Icon…
+│   └── ui/                  # Button, Card, Badge, SectionHeading, Marquee, Icon, PendingTag…
 ├── hooks/                   # useInView, useCountUp, useInterval, usePageTitle
 ├── lib/
 │   └── contact.js           # Contact-form submission logic
@@ -50,17 +52,19 @@ public/                      # Copied as-is: favicon, apple-touch-icon, og-image
 
 ## Common tasks
 
-**Change text, prices, FAQs, testimonials, jobs…** – edit the matching file in `src/data/`.
+**Change text, projects, products, FAQs…** – edit the matching file in `src/data/`.
 No component code needs to change.
 
-**Change email / phone / social links / booking link** – `src/config/site.js`.
+**Change company info, email, social links** – `src/config/site.js`. Navigation – `src/config/navigation.js`.
 
 **Add, remove or reorder home-page sections** – `src/pages/HomePage.jsx`.
 
 **Change colors, fonts, spacing** – `src/styles/tokens.css`. Components only use these variables.
+The layout follows the original template with the Valien palette (black, mint, bright gray);
+see `docs/brand.md` for the color mapping and logo usage.
 
 **Add an icon** – icons come from [Phosphor](https://phosphoricons.com). Register a short name
-in `src/components/ui/Icon.jsx`, then use that name in data files (`icon: 'rocket'`).
+in `src/components/ui/icons.jsx`, then use that name in data files (`icon: 'rocket'`).
 
 **Add a page** – create it in `src/pages/` and add a `<Route>` in `src/App.jsx`.
 
@@ -87,17 +91,27 @@ Vercel builds the site itself (`npm run build` → `dist/`) using `vercel.json`:
 `.github/workflows/ci.yml` runs lint, format check and a build on every pull request,
 so broken code is caught before it reaches Vercel.
 
-## Content still to replace
+## Pending content (preview vs production)
 
-Placeholder content from the original template is marked with `TODO` comments
-(`grep -rn TODO src`). Before launch, replace:
+Items marked `pending: true` in `src/config` / `src/data` are shown with a yellow
+"Pending" tag on local and Vercel **preview** deployments, and hidden on **production**
+(controlled by Vercel's `VERCEL_ENV`, see `src/config/publishing.js`). To publish an item,
+remove its `pending` flag once it is approved.
 
-- Phone number and booking link – `src/config/site.js`
-- Social profile URLs – `src/config/site.js`, `src/data/community.js`
-- Client logos – `src/data/hero.js`
-- Case studies (incl. the "ElevenLabs" entry) – `src/data/projects.js`
-- Testimonials and review count – `src/data/testimonials.js`
-- Stats (10k+ users, 250k+ hours, 4.8 rating) – `src/data/process.js`
-- FAQ answers (several are written for a SaaS product, not an agency) – `src/data/faq.js`
-- 2% donation claim – `src/data/pricing.js`, `src/data/faq.js`
-- Job openings – `src/data/careers.js`
+Currently pending or missing:
+
+- **Portfolio Projects (25+)** stat – awaiting project attribution approval (`src/data/process.js`)
+- **Client logos** – Mr Price and Al-Owaydan logos are pending permission; no original logo files
+  yet for Alketab Academy, REEFIYA, Zirconia Lab, Multiforms, Eiffel Stores, Sama Riyadh,
+  X-Fire Safety (`src/data/clients.js`)
+- **Alketab Academy** project – no approved screenshot or URL (`src/data/projects.js`)
+- **Shopit** – name and features need confirmation; Scanly/Shopit have no public URL or logo
+  (`src/data/products.js`)
+- **info@valien.tech** – unverified (`src/config/site.js`)
+- **About page, Client Portal, Privacy Policy, Terms, Cookie Settings** – not built; links hidden
+  (`src/config/navigation.js`)
+- **Social profiles** – none approved; social rows hidden
+- **Testimonials** – section hidden until real quotes are added (`src/data/testimonials.js`)
+
+Search engines: `vercel.json` sends `X-Robots-Tag: noindex` on every host except `valien.tech`
+and `www.valien.tech`, so preview URLs (including `valien.vercel.app`) are not indexed.

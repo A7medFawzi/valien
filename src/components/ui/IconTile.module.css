@@ -5,11 +5,13 @@
   height: 44px;
   border-radius: var(--radius-sm);
   flex-shrink: 0;
+  color: var(--color-ink);
 }
 
 .mint {
-  background: var(--color-mint-soft);
-  border: 1px solid rgb(150 255 176 / 0.6);
+  background: var(--color-mint-50);
+  border: 1px solid var(--color-white);
+  box-shadow: var(--shadow-card);
 }
 
 .white {

@@ -1,15 +1,14 @@
-import { finalCta } from '@/data/community';
-import { site } from '@/config/site';
+import { finalCta } from '@/data/cta';
 import cloud from '@/assets/images/hero/cloud.webp';
+import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
-import Icon from '@/components/ui/Icon';
 import styles from './CallToAction.module.css';
 
 export default function CallToAction() {
-  const { title, description, perks, cta } = finalCta;
+  const { badge, title, description, cta } = finalCta;
 
   return (
-    <section className="section">
+    <section className="section" aria-labelledby="final-cta-title">
       <div className="container">
         <div className={styles.panel}>
           <img
@@ -24,18 +23,13 @@ export default function CallToAction() {
             className={`${styles.cloud} ${styles.cloudBottom}`}
             aria-hidden="true"
           />
-          <h2 className={styles.title}>{title}</h2>
+          <Badge>{badge}</Badge>
+          <h2 id="final-cta-title" className={styles.title}>
+            {title}
+          </h2>
           <p className={styles.description}>{description}</p>
-          <ul className={styles.perks}>
-            {perks.map((perk) => (
-              <li key={perk.label}>
-                <Icon name={perk.icon} size={18} />
-                {perk.label}
-              </li>
-            ))}
-          </ul>
-          <Button to={site.bookingUrl} icon halo>
-            {cta}
+          <Button to={cta.to} icon halo className={styles.button}>
+            {cta.label}
           </Button>
         </div>
       </div>

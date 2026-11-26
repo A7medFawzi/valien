@@ -1,22 +1,47 @@
+/*
+ * Design tokens.
+ *
+ * The layout and color roles follow the original template; every color is
+ * mapped onto the Valien brand palette (see docs/brand.md):
+ *
+ *   Template                     Valien
+ *   #311081  primary (purple) →  #000000  black
+ *   #96B1FF  accent (blue)    →  #96FFB0  mint green
+ *   #BD45E6  accent (magenta) →  #96FFB0  mint green
+ *   #F6F1FC  lavender tint    →  #F1FFF4  mint 50
+ *   #E0E8FF  blue tint        →  #DCFDE4  mint 100
+ *   #FADCEC  pink tint        →  #EFEFEF  bright gray
+ *   #1C1629  text             →  #0A0A0A
+ */
 :root {
-  /* Colors */
-  --color-ink: #0a0b0a;
-  --color-ink-80: rgb(10 11 10 / 0.8);
-  --color-ink-60: rgb(10 11 10 / 0.6);
-  --color-ink-40: rgb(10 11 10 / 0.4);
-  --color-white: #ffffff;
-  --color-mint: #96ffb0;
-  --color-mint-soft: #e3fbe9;
-  --color-mint-tile: #c9e9dc;
-  --color-green: #22c55e;
-  --color-gray-50: #f9f9f9;
-  --color-gray-100: #f2f4f3;
-  --color-gray-200: #efefef;
-  --color-gray-300: #e5e5e5;
-  --color-gray-400: #d4d4d4;
-  --color-text-muted: #4a4b4a;
+  /* ---- Brand palette ---- */
+  --brand-black: #000000;
+  --brand-mint: #96ffb0;
+  --brand-gray: #efefef;
 
-  /* Typography */
+  /* ---- Roles ---- */
+  --color-primary: var(--brand-black);
+  --color-accent: var(--brand-mint);
+  --color-ink: #0a0a0a;
+  --color-ink-80: rgb(10 10 10 / 0.8);
+  --color-ink-60: rgb(10 10 10 / 0.6);
+  --color-ink-40: rgb(10 10 10 / 0.4);
+  --color-text-muted: #4b4b4b;
+  --color-white: #ffffff;
+
+  /* Tints (template lavender / blue / pink → mint / mint / gray) */
+  --color-mint-50: #f1fff4;
+  --color-mint-100: #dcfde4;
+  --color-mint-200: #c3f9d0;
+  --color-mint-500: var(--brand-mint);
+  --color-mint-700: #2fbf5c;
+  --color-gray-50: #f9f9f9;
+  --color-gray-100: #f4f4f4;
+  --color-gray-200: var(--brand-gray);
+  --color-gray-300: #e2e2e2;
+  --color-gray-400: #d4d4d4;
+
+  /* ---- Typography ---- */
   --font-heading: 'Satoshi', 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-label: 'Manrope', 'Inter', system-ui, sans-serif;
@@ -30,31 +55,39 @@
   --text-2xl: clamp(2rem, 1.4rem + 2vw, 2.75rem);
   --text-hero: clamp(2.75rem, 1.2rem + 5.2vw, 5.375rem);
 
-  /* Spacing & layout */
+  /* ---- Layout ---- */
   --container: 1200px;
   --gutter: clamp(1rem, 4vw, 2.5rem);
   --section-space: clamp(4.5rem, 3rem + 6vw, 8rem);
 
-  /* Radii */
+  /* ---- Radii ---- */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-pill: 999px;
 
-  /* Shadows */
+  /* ---- Shadows ---- */
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
   --shadow-card:
     0 0.8px 0.8px -1px rgb(0 0 0 / 0.04), 0 2.4px 2.4px -2px rgb(0 0 0 / 0.04),
-    0 6.4px 6.4px -3px rgb(0 0 0 / 0.03), 0 20px 20px -4px rgb(0 0 0 / 0.02);
+    0 6.4px 6.4px -3px rgb(0 0 0 / 0.03), 0 20px 20px -4px rgb(0 0 0 / 0.01);
+  --shadow-raised:
+    0 0.8px 0.8px -1px rgb(0 0 0 / 0.16), 0 2.4px 2.4px -2px rgb(0 0 0 / 0.15),
+    0 6.4px 6.4px -3px rgb(0 0 0 / 0.12), 0 20px 20px -4px rgb(0 0 0 / 0.05);
   --shadow-lift: 0 12px 32px -12px rgb(0 0 0 / 0.18);
-  --shadow-mint: 0 6px 24px -6px rgb(150 255 176 / 0.6);
+  --shadow-button:
+    0 0.7px 0.7px -0.6px rgb(0 0 0 / 0.17), 0 1.8px 1.8px -1.2px rgb(0 0 0 / 0.17),
+    0 3.6px 3.6px -1.75px rgb(0 0 0 / 0.16), 0 6.9px 6.9px -2.3px rgb(0 0 0 / 0.15),
+    0 13.6px 13.6px -2.9px rgb(0 0 0 / 0.12), 0 30px 30px -3.5px rgb(0 0 0 / 0.05);
 
-  /* Surfaces */
-  --surface-card: linear-gradient(180deg, #f7f7f7 0%, #ffffff 100%);
-  --surface-glass: linear-gradient(180deg, rgb(239 239 239 / 0.6) 0%, rgb(255 255 255 / 0.6) 100%);
+  /* ---- Surfaces ---- */
+  --surface-card: linear-gradient(180deg, rgb(241 255 244 / 0.5) 0%, rgb(255 255 255 / 0.5) 100%);
+  --surface-glass: linear-gradient(180deg, rgb(241 255 244 / 0.5) 0%, rgb(255 255 255 / 0.5) 100%);
+  --surface-primary: linear-gradient(303deg, var(--brand-gray) -197%, var(--brand-black) 100%);
+  --surface-highlight: linear-gradient(180deg, var(--color-mint-100) 0%, var(--brand-gray) 100%);
 
-  /* Motion */
+  /* ---- Motion ---- */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --duration: 0.3s;
 }

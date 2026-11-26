@@ -1,0 +1,17 @@
+.logo {
+  display: inline-flex;
+  line-height: 0;
+}
+
+.logo svg {
+  height: 100%;
+  width: auto;
+}
+
+.dark {
+  color: var(--brand-black);
+}
+
+.mint {
+  color: var(--brand-mint);
+}

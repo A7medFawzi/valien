@@ -1,22 +1,26 @@
 import { useState } from 'react';
-import { Asterisk, ChatsCircle, Phone } from '@phosphor-icons/react';
-import { site } from '@/config/site';
+import { EnvelopeSimple, MapPin } from '@phosphor-icons/react';
+import { company, contact, serviceAreas } from '@/config/site';
+import { showPending } from '@/config/publishing';
 import { submitContact } from '@/lib/contact';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import cloud from '@/assets/images/hero/cloud.webp';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import PendingTag from '@/components/ui/PendingTag';
 import styles from './ContactPage.module.css';
 
-const highlights = [
-  { label: 'Effortless Assistance', text: 'Connect with our team anytime' },
-  { label: 'Book a Demo Today', text: 'Experience our platform in action' },
-];
+const copy = {
+  title: 'Every project starts with a conversation.',
+  description:
+    "Tell us what you're working on, what you need or what you'd like to improve. We'll help you explore the right next step.",
+};
 
 const emptyForm = { name: '', email: '', subject: '', message: '' };
 
 export default function ContactPage() {
   usePageTitle('Contact');
+  const showEmail = !contact.email.pending || showPending;
   const [form, setForm] = useState(emptyForm);
   const [status, setStatus] = useState('idle'); // idle | sending | sent | mailto | error
 
@@ -41,34 +45,27 @@ export default function ContactPage() {
           <img src={cloud} alt="" className={styles.cloud} aria-hidden="true" />
 
           <div className={styles.info}>
-            <h1 className={styles.title}>Get in touch with us</h1>
-            <ul className={styles.highlights}>
-              {highlights.map((h) => (
-                <li key={h.label}>
-                  <Asterisk size={16} aria-hidden="true" />
-                  <span>
-                    <strong>{h.label}:</strong> {h.text}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <h1 className={styles.title}>{copy.title}</h1>
+            <p className={styles.lead}>{copy.description}</p>
 
             <div className={styles.cards}>
+              {showEmail && (
+                <Card className={styles.contactCard}>
+                  <span className={styles.cardIcon}>
+                    <EnvelopeSimple size={26} aria-hidden="true" />
+                  </span>
+                  <h2>Email</h2>
+                  <p>Prefer email? Write to us directly.</p>
+                  <a href={`mailto:${contact.email.value}`}>{contact.email.value}</a>
+                  {contact.email.pending && <PendingTag>Email unverified</PendingTag>}
+                </Card>
+              )}
               <Card className={styles.contactCard}>
                 <span className={styles.cardIcon}>
-                  <ChatsCircle size={26} aria-hidden="true" />
+                  <MapPin size={26} aria-hidden="true" />
                 </span>
-                <h2>Reach Out to Us</h2>
-                <p>Need assistance? Drop us a message anytime.</p>
-                <a href={`mailto:${site.email}`}>{site.email}</a>
-              </Card>
-              <Card className={styles.contactCard}>
-                <span className={styles.cardIcon}>
-                  <Phone size={26} aria-hidden="true" />
-                </span>
-                <h2>Call Us</h2>
-                <p>Need help? Give us a call—we&apos;re here for you.</p>
-                <a href={`tel:${site.phone}`}>{site.phone}</a>
+                <h2>Where we work</h2>
+                <p>{company.markets.join(' · ')} and businesses in international markets.</p>
               </Card>
             </div>
           </div>
@@ -98,8 +95,16 @@ export default function ContactPage() {
               />
             </label>
             <label>
-              Subject of Interest
-              <input name="subject" placeholder="Subject" value={form.subject} onChange={update} />
+              Service of interest
+              <select name="subject" value={form.subject} onChange={update}>
+                <option value="">Select a service (optional)</option>
+                {serviceAreas.map((service) => (
+                  <option key={service} value={service}>
+                    {service}
+                  </option>
+                ))}
+                <option value="Other">Something else</option>
+              </select>
             </label>
             <label>
               Message
@@ -107,14 +112,14 @@ export default function ContactPage() {
                 name="message"
                 required
                 rows={5}
-                placeholder="Message goes here..."
+                placeholder="Tell us about your project"
                 value={form.message}
                 onChange={update}
               />
             </label>
 
             <Button type="submit" block disabled={status === 'sending'}>
-              {status === 'sending' ? 'Sending…' : 'Submit'}
+              {status === 'sending' ? 'Sending…' : 'Send Message'}
             </Button>
 
             <p className={styles.status} role="status">
@@ -123,8 +128,15 @@ export default function ContactPage() {
               {status === 'mailto' && 'Your email app should open with the message ready to send.'}
               {status === 'error' && (
                 <>
-                  Something went wrong. Please email us at{' '}
-                  <a href={`mailto:${site.email}`}>{site.email}</a>.
+                  Something went wrong and your message was not sent. Please try again
+                  {showEmail && (
+                    <>
+                      {' '}
+                      or email us at{' '}
+                      <a href={`mailto:${contact.email.value}`}>{contact.email.value}</a>
+                    </>
+                  )}
+                  .
                 </>
               )}
             </p>
