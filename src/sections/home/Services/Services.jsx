@@ -1,36 +1,34 @@
 import {
-  Asterisk,
-  CalendarCheck,
   CaretLeft,
   CaretRight,
-  ChatsCircle,
-  EnvelopeSimple,
-  ImageSquare,
   MagnifyingGlass,
-  Paperclip,
-  Sparkle,
-  UserFocus,
+  Package,
+  ShoppingBag,
+  Tag,
 } from '@phosphor-icons/react';
-import { sampleCode, services } from '@/data/services';
+import { sampleCode, services, servicesIntro } from '@/data/services';
 import Card from '@/components/ui/Card';
 import Icon from '@/components/ui/Icon';
+import { getIcon } from '@/components/ui/icons';
 import IconTile from '@/components/ui/IconTile';
 import Marquee from '@/components/ui/Marquee';
 import SectionGlow from '@/components/ui/SectionGlow';
+import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Services.module.css';
 
-const orbitIcons = [CalendarCheck, EnvelopeSimple, ChatsCircle, UserFocus];
-
 /*
- * Workflow diagram (Landeros "AI-Automation" orbit): a mint band, four app nodes on it,
- * and curved connectors from every node to the label. Drawn in a fixed 520×280 viewBox.
+ * Business systems diagram (template orbit): a mint band, four system nodes on it
+ * (ERP, CRM, inventory, dashboards) and connectors into the central business software.
+ * Drawn in a fixed 520×260 viewBox.
  */
 const ORBIT = { cx: 260, cy: 300, outer: 230, inner: 150, nodeRadius: 190 };
 const LABEL = { x: 260, y: 236 };
 const orbitNodes = [-162, -126, -58, -22].map((deg, i) => {
   const rad = (deg * Math.PI) / 180;
+  const node = services.systems.nodes[i];
   return {
-    Icon: orbitIcons[i],
+    Icon: getIcon(node.icon),
+    label: node.label,
     x: ORBIT.cx + ORBIT.nodeRadius * Math.cos(rad),
     y: ORBIT.cy + ORBIT.nodeRadius * Math.sin(rad),
   };
@@ -48,15 +46,18 @@ function WorkflowVisual() {
           d={`M ${x} ${y} Q ${(x + LABEL.x) / 2} ${LABEL.y - 10} ${LABEL.x} ${LABEL.y}`}
         />
       ))}
-      {orbitNodes.map(({ Icon, x, y }, i) => (
+      {orbitNodes.map(({ Icon, label, x, y }, i) => (
         <g key={i} className={styles.orbitNode} style={{ '--i': i }}>
           <circle cx={x} cy={y} r="26" className={styles.orbitNodeHalo} />
           <circle cx={x} cy={y} r="19" className={styles.orbitNodeDot} />
           <Icon x={x - 12} y={y - 12} width="24" height="24" weight="duotone" />
+          <text x={x} y={y - 34} textAnchor="middle" className={styles.orbitNodeLabel}>
+            {label}
+          </text>
         </g>
       ))}
-      <foreignObject x={LABEL.x - 70} y={LABEL.y - 22} width="140" height="44">
-        <span className={styles.orbitLabel}>AI-Automation</span>
+      <foreignObject x={LABEL.x - 80} y={LABEL.y - 22} width="160" height="44">
+        <span className={styles.orbitLabel}>{services.systems.label}</span>
       </foreignObject>
     </svg>
   );
@@ -68,7 +69,7 @@ function CodeVisual() {
     <div className={styles.editor} aria-hidden="true">
       <div className={styles.editorBar}>
         <span className={styles.fileName}>
-          Name : <strong>AI_development.py</strong>
+          Name : <strong>{services.saas.fileName}</strong>
         </span>
         <span className={styles.search}>
           <MagnifyingGlass size={14} />
@@ -94,14 +95,15 @@ function CodeVisual() {
   );
 }
 
-function ChatVisual() {
+function CommerceVisual() {
+  const { header, products, search, action } = services.commerce;
   return (
     <div className={styles.chat} aria-hidden="true">
       <div className={styles.chatHeader}>
         <span className={styles.chatAvatar}>
-          <Sparkle size={22} weight="duotone" />
+          <ShoppingBag size={22} weight="duotone" />
         </span>
-        <span>Creating Content Now</span>
+        <span>{header}</span>
         <span className={styles.typing}>
           <i />
           <i />
@@ -112,86 +114,76 @@ function ChatVisual() {
       <span className={styles.skeleton} />
       <div className={styles.chatImages}>
         <span>
-          <ImageSquare size={30} />
+          <Package size={28} />
+          <small>{products[0]}</small>
         </span>
         <span>
-          <ImageSquare size={30} />
+          <Tag size={28} />
+          <small>{products[1]}</small>
         </span>
       </div>
       <div className={styles.chatInput}>
-        <Paperclip size={20} />
-        <span className={styles.prompt}>Create a banner</span>
-        <span className={styles.send}>Create</span>
+        <MagnifyingGlass size={20} />
+        <span className={styles.prompt}>{search}</span>
+        <span className={styles.send}>{action}</span>
       </div>
     </div>
   );
 }
 
+function FeatureCard({ service }) {
+  return (
+    <Card className={styles.feature}>
+      <IconTile name={service.icon} />
+      <h3>{service.title}</h3>
+      <p>{service.text}</p>
+      <ul className={styles.concepts}>
+        {service.concepts.map((concept) => (
+          <li key={concept}>{concept}</li>
+        ))}
+      </ul>
+    </Card>
+  );
+}
+
+function Panel({ service, children }) {
+  return (
+    <Card className={styles.panel}>
+      <h3>{service.title}</h3>
+      <p>{service.text}</p>
+      <div className={styles.visual}>{children}</div>
+    </Card>
+  );
+}
+
 export default function Services() {
-  const { title, highlights, features, workflow, customModels, chatbots, tags } = services;
+  const { web, mobile, systems, saas, commerce, keywords } = services;
 
   return (
     <section id="services" className="section">
       <SectionGlow variant="right" />
       <div className={`container ${styles.grid}`}>
         <div className={styles.intro}>
-          <h2 className={styles.title}>{title}</h2>
-          <ul className={styles.highlights}>
-            {highlights.map((h) => (
-              <li key={h.label}>
-                <Asterisk size={16} aria-hidden="true" />
-                <span>
-                  <strong>{h.label}:</strong> {h.text}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <SectionHeading align="start" {...servicesIntro} />
           <div className={styles.features}>
-            {features.map((f) => (
-              <div key={f.title}>
-                <Card className={styles.feature}>
-                  <IconTile name={f.icon} />
-                  <h3>{f.title}</h3>
-                  <p>{f.text}</p>
-                </Card>
-              </div>
-            ))}
+            <FeatureCard service={web} />
+            <FeatureCard service={mobile} />
           </div>
         </div>
 
-        <div>
-          <Card className={styles.panel}>
-            <h3>{workflow.title}</h3>
-            <p>{workflow.text}</p>
-            <div className={styles.visual}>
-              <WorkflowVisual />
-            </div>
-          </Card>
-        </div>
-
-        <div>
-          <Card className={styles.panel}>
-            <h3>{customModels.title}</h3>
-            <p>{customModels.text}</p>
-            <div className={styles.visual}>
-              <CodeVisual />
-            </div>
-          </Card>
-        </div>
-
-        <div>
-          <Card className={styles.panel}>
-            <h3>{chatbots.title}</h3>
-            <p>{chatbots.text}</p>
-            <div className={styles.visual}>
-              <ChatVisual />
-            </div>
-          </Card>
-        </div>
+        <Panel service={systems}>
+          <WorkflowVisual />
+        </Panel>
+        <Panel service={saas}>
+          <CodeVisual />
+        </Panel>
+        <Panel service={commerce}>
+          <CommerceVisual />
+        </Panel>
       </div>
 
       <Marquee duration={40} className={styles.tags}>
-        {tags.map((tag) => (
+        {keywords.map((tag) => (
           <span key={tag.label} className={styles.tag}>
             <Icon name={tag.icon} size={18} />
             {tag.label}

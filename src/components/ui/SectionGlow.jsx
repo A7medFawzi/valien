@@ -1,7 +1,7 @@
 import styles from './SectionGlow.module.css';
 
 /**
- * Soft blurred color blobs behind a section (the Landeros "glow" look, in Valien mint).
+ * Soft blurred color blobs behind a section (the template "glow" look, in Valien mint).
  * Place it as the first child of a `position: relative` section.
  * - variant: "center" | "left" | "right" | "split"
  */

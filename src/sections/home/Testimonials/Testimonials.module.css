@@ -37,43 +37,7 @@
   margin-top: 0.4rem;
 }
 
-.source {
-  margin-left: auto;
-  align-self: flex-start;
-}
-
 .quote {
   padding-top: 1.5rem;
   color: var(--color-ink-80);
-}
-
-.summary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2.5rem;
-  color: var(--color-text-muted);
-}
-
-.summary strong {
-  color: var(--color-ink);
-  font-weight: 600;
-}
-
-.avatars {
-  display: flex;
-}
-
-.avatars img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid var(--color-white);
-  object-fit: cover;
-  box-shadow: var(--shadow-card);
-}
-
-.avatars img + img {
-  margin-left: -8px;
 }

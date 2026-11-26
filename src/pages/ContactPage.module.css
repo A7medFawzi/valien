@@ -40,20 +40,9 @@
   font-size: var(--text-2xl);
 }
 
-.highlights {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.highlights li {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.highlights strong {
-  font-weight: 600;
+.lead {
+  max-width: 460px;
+  color: var(--color-text-muted);
 }
 
 .cards {
@@ -112,6 +101,7 @@
 }
 
 .form input,
+.form select,
 .form textarea {
   width: 100%;
   padding: 0.75rem;
@@ -130,6 +120,7 @@
 }
 
 .form input:focus,
+.form select:focus,
 .form textarea:focus {
   outline: none;
   border-color: var(--color-primary);

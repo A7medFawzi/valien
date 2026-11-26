@@ -1,0 +1,102 @@
+/* ---------- Plans ---------- */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  align-items: center;
+}
+
+.planWrap {
+  height: 100%;
+}
+
+/* Cards keep the template tints (gray / white / mint). */
+.plan {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-white);
+  background: linear-gradient(180deg, var(--color-gray-200) 0%, var(--color-white) 70%);
+  box-shadow: var(--shadow-card);
+}
+
+.planWrap:last-child .plan {
+  background: linear-gradient(
+    180deg,
+    var(--color-mint-100) 0%,
+    var(--color-mint-50) 60%,
+    var(--color-white) 100%
+  );
+}
+
+.planHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--color-gray-300);
+}
+
+.category {
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  font-size: var(--text-xs);
+  color: var(--color-ink-80);
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+}
+
+/* Product logos keep their own branding. */
+.logo {
+  height: 34px;
+  width: auto;
+}
+
+.description {
+  min-height: 3.1em;
+  color: var(--color-text-muted);
+}
+
+.includes {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-block: 1.5rem 1rem;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.features li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.features svg {
+  flex-shrink: 0;
+  color: var(--color-ink-60);
+}
+
+@media (max-width: 960px) {
+  .plans {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 460px;
+    margin-inline: auto;
+  }
+}

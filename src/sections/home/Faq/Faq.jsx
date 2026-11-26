@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { EnvelopeSimple, Plus } from '@phosphor-icons/react';
 import { faqIntro, faqs } from '@/data/faq';
-import { site } from '@/config/site';
+import { contact } from '@/config/site';
+import { showPending } from '@/config/publishing';
+import PendingTag from '@/components/ui/PendingTag';
 import Button from '@/components/ui/Button';
 import SectionGlow from '@/components/ui/SectionGlow';
 import styles from './Faq.module.css';
@@ -49,7 +51,7 @@ export default function Faq() {
         <div className={styles.header}>
           <h2 className={styles.title}>{faqIntro.title}</h2>
           <p className={styles.description}>{faqIntro.description}</p>
-          <Button to="/contact">Contact Sales Now</Button>
+          <Button to={faqIntro.cta.to}>{faqIntro.cta.label}</Button>
         </div>
 
         <div className={styles.grid}>
@@ -65,10 +67,14 @@ export default function Faq() {
           ))}
         </div>
 
-        <p className={styles.mail}>
-          <EnvelopeSimple size={20} aria-hidden="true" />
-          Feel free to mail us for any enquiries: <a href={`mailto:${site.email}`}>{site.email}</a>
-        </p>
+        {(!contact.email.pending || showPending) && (
+          <p className={styles.mail}>
+            <EnvelopeSimple size={20} aria-hidden="true" />
+            Prefer email? Write to us at{' '}
+            <a href={`mailto:${contact.email.value}`}>{contact.email.value}</a>
+            {contact.email.pending && <PendingTag>Email unverified</PendingTag>}
+          </p>
+        )}
       </div>
     </section>
   );

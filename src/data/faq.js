@@ -1,41 +1,40 @@
 export const faqIntro = {
-  title: 'Questions answered',
-  description:
-    'We’re here to help you and solve objections. Find answers to the most common questions below.',
+  title: 'A few things you might want to know.',
+  description: 'Answers to common questions about working with Valien.',
+  cta: { label: "Let's Talk", to: '/contact' },
 };
 
-/** TODO: review answers – several were written for a SaaS template, not an agency. */
 export const faqs = [
   {
-    q: 'What is included in the Starter plan?',
-    a: 'The Starter plan includes unlimited analytics usage, premium support, customer care, and collaboration tools—everything you need to get started!',
+    q: 'How much does a software project cost?',
+    a: 'Every project is different. Pricing depends on its scope, features, integrations and support requirements. We provide a tailored proposal after understanding your needs.',
   },
   {
-    q: 'Can I switch plans later?',
-    a: 'Absolutely! You can upgrade or downgrade your plan at any time without any hassle.',
+    q: 'How long does development take?',
+    a: 'Timelines depend on the complexity and scope of the project. We establish clear milestones before development begins.',
   },
   {
-    q: 'How secure is my data?',
-    a: 'Your data is protected with enterprise-grade security measures, including encryption and regular audits, ensuring maximum safety.',
+    q: 'Can you work with our existing software?',
+    a: 'Yes, subject to a technical assessment. We can review existing systems and explore options for improvement, integration or redevelopment.',
   },
   {
-    q: 'Can I integrate this platform with other tools?',
-    a: 'Absolutely! Our platform supports integrations with popular CRMs and business tools, allowing for seamless workflows.',
+    q: 'Do you provide support after launch?',
+    a: 'Yes. Maintenance, technical support and continued development are available according to the agreed service scope.',
   },
   {
-    q: 'Do you offer a free trial?',
-    a: 'Yes! Our Pro plan includes a free trial so you can explore all the features before committing.',
+    q: 'Who owns the source code?',
+    a: 'Source code ownership and licensing are defined in the individual project agreement.',
   },
   {
-    q: 'What payment methods do you accept?',
-    a: 'We accept all major credit cards, and for Enterprise plans, we also support invoicing and wire transfers.',
+    q: 'Do you work with businesses in Saudi Arabia?',
+    a: 'Yes. We serve businesses in Saudi Arabia, Egypt and international markets. Saudi project contracts are handled through EVEXA.',
   },
   {
-    q: 'How does the 2% donation work?',
-    a: 'We allocate 2% of all memberships directly to pediatric well-being organizations, helping make a difference with every subscription.',
+    q: 'Can I request branding or design without development?',
+    a: 'Yes. Branding and digital design are available as standalone services or as part of a software development project.',
   },
   {
-    q: 'What makes your platform different?',
-    a: 'Our focus is on user-friendly design, actionable insights, and top-notch customer support—giving you everything you need to grow.',
+    q: 'Do you develop MVPs for startups?',
+    a: 'Yes. We help founders define and develop initial product versions based on their requirements and priorities.',
   },
 ];

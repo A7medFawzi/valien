@@ -78,6 +78,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
   transition: transform 0.8s var(--ease-out);
 }
 
@@ -97,23 +98,46 @@
 }
 
 .caption h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: var(--text-xl);
   margin-bottom: 0.4rem;
+}
+
+.category {
+  margin-bottom: 0.35rem;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent) !important;
+}
+
+.tabMeta {
+  font-size: var(--text-sm);
+  text-align: right;
+}
+
+/* Shown when a project has no approved screenshot yet. */
+.placeholder {
+  display: grid;
+  place-items: start center;
+  padding-top: 18%;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(60% 60% at 50% 30%, rgb(150 255 176 / 0.25), transparent 70%),
+    var(--surface-primary);
+}
+
+.placeholder > span {
+  height: 64px;
+  opacity: 0.85;
 }
 
 .caption p {
   font-size: var(--text-base);
   color: rgb(255 255 255 / 0.75);
-}
-
-.logos {
-  --gap: 5rem;
-  margin-top: 3.5rem;
-}
-
-.logos img {
-  height: 24px;
-  width: auto;
 }
 
 @media (max-width: 860px) {

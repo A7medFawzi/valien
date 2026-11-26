@@ -1,29 +1,29 @@
 export const processSection = {
-  badge: 'Process',
-  title: 'Process Is Performance',
-  description:
-    'Strategic, AI-driven steps built to grow your business faster, smarter, and stronger with measurable results',
+  badge: 'Our Process',
+  title: 'From idea to working software.',
+  description: 'A clear development process, built around your requirements and business goals.',
   steps: [
     {
-      icon: 'share',
-      title: 'Workflow Assessment',
-      text: 'We begin by examining your existing workflows to identify where AI can deliver the greatest impact.',
+      icon: 'plan',
+      title: 'Understand & Plan',
+      text: 'We understand your business, define your requirements and establish a clear project scope.',
+    },
+    {
+      icon: 'code',
+      title: 'Design & Develop',
+      text: 'We design, build and test your software, keeping you involved throughout development.',
     },
     {
       icon: 'rocket',
-      title: 'Deploy with Confidence',
-      text: 'Our team develops custom AI systems built around your goals, ensuring safe and reliable deployment.',
-    },
-    {
-      icon: 'headset',
-      title: 'Ongoing Support',
-      text: 'After deployment, we provide support and refine your AI systems to keep them performing at their best.',
+      title: 'Launch & Support',
+      text: 'We launch your solution and provide the agreed support as your business evolves.',
     },
   ],
-  // TODO: placeholder numbers – replace with real figures
   stats: [
-    { value: 10, suffix: 'k+', label: 'Happy users' },
-    { value: 250, suffix: 'k+', label: 'Total hrs saved' },
-    { value: 4.8, decimals: 1, label: 'Average Rating' },
+    // Pending: final project attribution approval.
+    { value: 25, suffix: '+', label: 'Portfolio Projects', pending: true },
+    // Supplied by the business owner.
+    { value: 1000, suffix: '+', label: 'Pharmacies on Mr Price' },
+    { value: 30000, suffix: '+', label: 'Students on Alketab' },
   ],
 };

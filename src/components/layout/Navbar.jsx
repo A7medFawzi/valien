@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { navLinks } from '@/config/site';
+import { mainNav, primaryCta, withDestination } from '@/config/navigation';
 import Button from '../ui/Button';
 import Logo from '../ui/Logo';
 import styles from './Navbar.module.css';
+
+const navLinks = withDestination(mainNav);
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -38,8 +40,8 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <Button to="/#pricing" className={styles.cta}>
-          Get Started
+        <Button to={primaryCta.to} className={styles.cta}>
+          {primaryCta.label}
         </Button>
 
         <button
@@ -64,8 +66,8 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <Button to="/#pricing" block onClick={close}>
-            Get Started
+          <Button to={primaryCta.to} block onClick={close}>
+            {primaryCta.label}
           </Button>
         </nav>
       </div>

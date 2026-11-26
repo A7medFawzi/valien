@@ -1,21 +1,28 @@
 import { processSection } from '@/data/process';
+import { publishable } from '@/config/publishing';
 import { useInView } from '@/hooks/useInView';
 import { useCountUp } from '@/hooks/useCountUp';
 import Card from '@/components/ui/Card';
 import Icon from '@/components/ui/Icon';
+import PendingTag from '@/components/ui/PendingTag';
 import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Process.module.css';
 
-function Stat({ value, suffix = '', decimals = 0, label, start }) {
-  const current = useCountUp(value, { start, decimals });
+function Stat({ value, suffix = '', decimals = 0, label, pending, start }) {
+  const current = Number(useCountUp(value, { start, decimals }));
+  const formatted = current.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
   return (
     <div className={styles.stat}>
       <p className={styles.statValue}>
-        {current}
+        {formatted}
         {suffix}
       </p>
       <p className={styles.statLabel}>{label}</p>
+      {pending && <PendingTag />}
     </div>
   );
 }
@@ -45,7 +52,7 @@ export default function Process() {
         </ol>
 
         <div ref={statsRef} className={styles.stats}>
-          {stats.map((stat) => (
+          {publishable(stats).map((stat) => (
             <Stat key={stat.label} {...stat} start={statsInView} />
           ))}
         </div>

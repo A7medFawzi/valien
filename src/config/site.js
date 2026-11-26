@@ -1,40 +1,40 @@
 /**
- * Site-wide settings: brand, contact details, navigation and social links.
- * Edit this file to change details shown in the navbar, footer and contact page.
+ * Company and contact information. Keep all business facts here so the
+ * Arabic version can reuse the same data in a later phase.
+ *
+ * Anything marked `pending: true` is hidden on production (see config/publishing.js).
  */
-export const site = {
+export const company = {
   name: 'Valien',
-  tagline: 'AI Automation Agency',
-  email: 'hello@valien.ai',
-  // TODO: replace with the real phone number
-  phone: '+1234567890',
-  // TODO: replace with the real booking link (Cal.com, Calendly, ...)
-  bookingUrl: '/contact',
-  jobsUrl: 'https://www.linkedin.com/jobs/',
+  descriptor: 'Software Solutions',
+  statement: 'Software built around your business.',
+  markets: ['Egypt', 'Saudi Arabia'],
 };
 
-/** Links in the top navigation. `to` values starting with "/#" scroll to a home-page section. */
-export const navLinks = [
-  { label: 'Services', to: '/#services' },
-  { label: 'Reviews', to: '/#reviews' },
-  { label: 'Pricing', to: '/#pricing' },
-  { label: 'Projects', to: '/#projects' },
-  { label: 'Contact Us', to: '/contact' },
-];
+export const contact = {
+  // TODO: verify this mailbox before production launch.
+  email: { value: 'info@valien.tech', pending: true },
+  // No approved phone number yet – intentionally omitted.
+};
 
-export const footerLinks = [
-  { label: 'Product', to: '/#services' },
-  { label: 'Integrations', to: '/#integrations' },
-  { label: 'Success Stories', to: '/#process' },
-  { label: 'Contact Us', to: '/contact' },
-  { label: 'Pricing', to: '/#pricing' },
-  { label: 'Careers', to: '/#careers' },
-];
+/** Approved social profiles only. None are approved yet, so the social rows are hidden. */
+export const socialLinks = [];
 
-/** TODO: replace with the real profile URLs. */
-export const socialLinks = [
-  { label: 'X', icon: 'x', href: 'https://x.com/' },
-  { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/' },
-  { label: 'Facebook', icon: 'facebook', href: 'https://www.facebook.com/' },
-  { label: 'Dribbble', icon: 'dribbble', href: 'https://dribbble.com/' },
+/** EVEXA – the independently operated AI-specialised company sharing Valien's vision. */
+export const evexa = {
+  heading: 'Two Specialties. One Vision.',
+  description: 'Explore EVEXA, our AI-specialised company.',
+  cta: 'Discover EVEXA',
+  url: 'https://evexa.tech/en',
+};
+
+/** Seven service areas, used by the footer and the contact form. */
+export const serviceAreas = [
+  'Business Systems',
+  'Web Development',
+  'Mobile App Development',
+  'E-commerce Solutions',
+  'SaaS & Product Development',
+  'Branding & Digital Design',
+  'Cloud, Integration & Support',
 ];

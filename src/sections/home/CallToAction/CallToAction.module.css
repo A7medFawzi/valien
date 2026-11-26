@@ -43,22 +43,6 @@
   color: var(--color-text-muted);
 }
 
-.perks {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.perks li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.9rem;
-  border-radius: var(--radius-sm);
-  background: rgb(255 255 255 / 0.7);
-  color: var(--color-primary);
-  font-size: var(--text-sm);
-  box-shadow: var(--shadow-card);
+.button {
+  margin-top: 0.75rem;
 }

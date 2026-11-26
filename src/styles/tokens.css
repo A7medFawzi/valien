@@ -1,10 +1,10 @@
 /*
  * Design tokens.
  *
- * The layout and color roles follow the Landeros template; every color is
+ * The layout and color roles follow the original template; every color is
  * mapped onto the Valien brand palette (see docs/brand.md):
  *
- *   Landeros                     Valien
+ *   Template                     Valien
  *   #311081  primary (purple) →  #000000  black
  *   #96B1FF  accent (blue)    →  #96FFB0  mint green
  *   #BD45E6  accent (magenta) →  #96FFB0  mint green
@@ -29,7 +29,7 @@
   --color-text-muted: #4b4b4b;
   --color-white: #ffffff;
 
-  /* Tints (Landeros lavender / blue / pink → mint / mint / gray) */
+  /* Tints (template lavender / blue / pink → mint / mint / gray) */
   --color-mint-50: #f1fff4;
   --color-mint-100: #dcfde4;
   --color-mint-200: #c3f9d0;

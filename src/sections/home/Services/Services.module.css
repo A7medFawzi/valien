@@ -11,31 +11,6 @@
   gap: 1.5rem;
 }
 
-.title {
-  font-size: var(--text-2xl);
-}
-
-.highlights {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.highlights li {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.highlights svg {
-  flex-shrink: 0;
-  color: var(--color-ink-60);
-}
-
-.highlights strong {
-  font-weight: 600;
-}
-
 .features {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -54,6 +29,23 @@
 .feature h3 {
   margin-top: 1.25rem;
   font-size: var(--text-xl);
+}
+
+.concepts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.concepts li {
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  font-size: var(--text-xs);
+  color: var(--color-ink-80);
 }
 
 .feature p {
@@ -123,6 +115,13 @@
   fill: var(--color-mint-50);
   stroke: var(--color-white);
   stroke-width: 1.5;
+}
+
+.orbitNodeLabel {
+  fill: var(--color-ink-60);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .orbitLabel {
@@ -327,7 +326,14 @@
   gap: 0.75rem;
 }
 
+.chatImages small {
+  font-size: var(--text-xs);
+  color: var(--color-ink-60);
+}
+
 .chatImages span {
+  gap: 0.35rem;
+  align-content: center;
   animation: wobble 3s ease-in-out infinite;
   display: grid;
   place-items: center;
