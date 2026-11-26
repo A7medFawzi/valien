@@ -96,9 +96,9 @@
 }
 
 .stage {
-  --tile: clamp(110px, 13vw, 168px);
+  --tile: clamp(84px, 11.5vw, 165px);
   margin-top: calc(var(--tile) * 0.15);
-  height: calc(var(--tile) * 2.55);
+  height: calc(var(--tile) * 3.1);
   display: grid;
   place-items: center;
   pointer-events: none;
@@ -107,8 +107,8 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, var(--tile));
-  gap: calc(var(--tile) * 0.04);
-  transform: translateY(calc(var(--tile) * 0.25)) rotateX(58deg) rotateZ(45deg);
+  gap: calc(var(--tile) * 0.27);
+  transform: translateY(calc(var(--tile) * 0.3)) rotateX(60deg) rotateZ(45deg);
   transform-style: preserve-3d;
 }
 
@@ -117,16 +117,15 @@
   width: var(--tile);
   height: var(--tile);
   transform-style: preserve-3d;
-  animation: grow 6s ease-in-out infinite;
+  animation: grow var(--duration) ease-in-out infinite alternate;
   animation-delay: var(--delay);
 }
 
 @keyframes grow {
-  0%,
-  100% {
+  from {
     --h: var(--min);
   }
-  50% {
+  to {
     --h: var(--max);
   }
 }

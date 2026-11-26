@@ -3,7 +3,6 @@ import { useInView } from '@/hooks/useInView';
 import { useCountUp } from '@/hooks/useCountUp';
 import Card from '@/components/ui/Card';
 import Icon from '@/components/ui/Icon';
-import Reveal from '@/components/ui/Reveal';
 import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Process.module.css';
@@ -33,7 +32,7 @@ export default function Process() {
 
         <ol className={styles.steps}>
           {steps.map((step, i) => (
-            <Reveal as="li" key={step.title} delay={i * 120}>
+            <li key={step.title}>
               <Card interactive className={styles.step}>
                 <span className={styles.number}>{i + 1}</span>
                 <Icon name={step.icon} size={28} className={styles.icon} />
@@ -41,7 +40,7 @@ export default function Process() {
                 <p className={styles.stepText}>{step.text}</p>
                 <span className={styles.stepTag}>Step {i + 1}</span>
               </Card>
-            </Reveal>
+            </li>
           ))}
         </ol>
 

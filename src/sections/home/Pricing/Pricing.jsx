@@ -4,7 +4,6 @@ import { plans, pricingIntro } from '@/data/pricing';
 import Button from '@/components/ui/Button';
 import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
-import Reveal from '@/components/ui/Reveal';
 import styles from './Pricing.module.css';
 
 const formatPrice = (value) => `$${value.toLocaleString('en-US')}`;
@@ -36,8 +35,8 @@ export default function Pricing() {
         </div>
 
         <div className={styles.plans}>
-          {plans.map((plan, i) => (
-            <Reveal key={plan.name} delay={i * 120} className={styles.planWrap}>
+          {plans.map((plan) => (
+            <div key={plan.name} className={styles.planWrap}>
               <article className={`${styles.plan} ${plan.popular ? styles.popular : ''}`}>
                 <header className={styles.planHeader}>
                   <h3 className={styles.planName}>
@@ -66,7 +65,7 @@ export default function Pricing() {
                   ))}
                 </ul>
               </article>
-            </Reveal>
+            </div>
           ))}
         </div>
 

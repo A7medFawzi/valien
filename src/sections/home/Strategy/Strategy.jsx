@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import {
   ArrowCircleUpRight,
+  Cube,
+  DiscordLogo,
   FacebookLogo,
   Gif,
   Image,
+  InstagramLogo,
   MonitorPlay,
   Sparkle,
   XLogo,
@@ -13,12 +16,16 @@ import { site } from '@/config/site';
 import { useInterval } from '@/hooks/useInterval';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import Reveal from '@/components/ui/Reveal';
+import Marquee from '@/components/ui/Marquee';
 import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Strategy.module.css';
 
-const folderIcons = [XLogo, Sparkle, FacebookLogo, MonitorPlay, Image, Gif];
+// Two rows of content icons that slide sideways inside the folder, as in the original.
+const folderRows = [
+  [XLogo, Sparkle, FacebookLogo, DiscordLogo, InstagramLogo],
+  [Cube, MonitorPlay, Image, Gif, Sparkle],
+];
 
 function GrowthChart({ before, after }) {
   const [showAfter, setShowAfter] = useState(false);
@@ -61,8 +68,12 @@ function ContentFolder() {
       <div className={styles.folder}>
         <span className={styles.folderTab} />
         <div className={styles.folderFront}>
-          {folderIcons.map((FolderIcon, i) => (
-            <FolderIcon key={i} size={34} />
+          {folderRows.map((row, r) => (
+            <Marquee key={r} duration={9} fade={false} className={styles.folderRow}>
+              {row.map((FolderIcon, i) => (
+                <FolderIcon key={i} size={34} />
+              ))}
+            </Marquee>
           ))}
         </div>
       </div>
@@ -80,7 +91,7 @@ export default function Strategy() {
         <SectionHeading title={title} />
 
         <div className={styles.cards}>
-          <Reveal>
+          <div>
             <Card className={styles.card}>
               <h3>{consulting.title}</h3>
               <p>{consulting.text}</p>
@@ -88,8 +99,8 @@ export default function Strategy() {
                 <GrowthChart before={consulting.before} after={consulting.after} />
               </div>
             </Card>
-          </Reveal>
-          <Reveal delay={120}>
+          </div>
+          <div>
             <Card className={styles.card}>
               <h3>{content.title}</h3>
               <p>{content.text}</p>
@@ -97,7 +108,7 @@ export default function Strategy() {
                 <ContentFolder />
               </div>
             </Card>
-          </Reveal>
+          </div>
         </div>
 
         <div className={styles.actions}>

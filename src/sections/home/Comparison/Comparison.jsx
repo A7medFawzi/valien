@@ -4,7 +4,6 @@ import { site } from '@/config/site';
 import Logo from '@/components/ui/Logo';
 import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
-import Reveal from '@/components/ui/Reveal';
 import styles from './Comparison.module.css';
 
 export default function Comparison() {
@@ -17,7 +16,7 @@ export default function Comparison() {
         <SectionHeading badge={badge} title={title} description={description} />
 
         <div className={styles.columns}>
-          <Reveal className={styles.column}>
+          <div className={styles.column}>
             <h3 className={styles.columnTitle}>
               <span className={styles.mark}>
                 <Logo variant="mark" tone="mint" />
@@ -32,9 +31,9 @@ export default function Comparison() {
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </div>
 
-          <Reveal className={styles.column} delay={120}>
+          <div className={styles.column}>
             <h3 className={styles.columnTitle}>
               <Stack size={24} aria-hidden="true" />
               Others
@@ -47,7 +46,7 @@ export default function Comparison() {
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </div>
         </div>
       </div>
     </section>

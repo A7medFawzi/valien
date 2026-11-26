@@ -10,12 +10,15 @@ import styles from './Hero.module.css';
  * Isometric 3D blocks. Each block is a stack of thin layers (the sides) plus a top face,
  * so the rounded corners stay intact; heights animate via the --h custom property.
  * Grid order on the rotated 2×2 grid: back, right, left, front.
+ *
+ * Heights are fractions of the tile size; speeds and ranges were measured from the
+ * Landeros hero (each block rises and falls continuously every ~1.4–1.8s).
  */
 const blocks = [
-  { Icon: Code, min: 40, max: 90, delay: 0 },
-  { Icon: ChartPieSlice, min: 30, max: 70, delay: -1.6 },
-  { Icon: GearSix, min: 50, max: 110, delay: -3.2 },
-  { Icon: Sparkle, min: 70, max: 150, delay: -0.8 },
+  { Icon: Code, min: 0.33, max: 0.7, duration: 1.8, delay: -0.5 },
+  { Icon: ChartPieSlice, min: 0.33, max: 0.88, duration: 1.4, delay: -0.35 },
+  { Icon: GearSix, min: 0.35, max: 0.95, duration: 1.5, delay: -1.35 },
+  { Icon: Sparkle, min: 0.5, max: 0.9, duration: 1.35, delay: -0.15 },
 ];
 const LAYERS = 24;
 const layers = Array.from({ length: LAYERS }, (_, i) => i / LAYERS);
@@ -43,11 +46,16 @@ export default function Hero() {
 
         <div className={styles.stage} aria-hidden="true">
           <div className={styles.grid}>
-            {blocks.map(({ Icon, min, max, delay }, i) => (
+            {blocks.map(({ Icon, min, max, duration, delay }, i) => (
               <div
                 key={i}
                 className={styles.block}
-                style={{ '--min': `${min}px`, '--max': `${max}px`, '--delay': `${delay}s` }}
+                style={{
+                  '--min': `calc(var(--tile) * ${min})`,
+                  '--max': `calc(var(--tile) * ${max})`,
+                  '--duration': `${duration}s`,
+                  '--delay': `${delay}s`,
+                }}
               >
                 <span className={styles.shadow} />
                 {layers.map((k) => (

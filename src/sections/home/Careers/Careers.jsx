@@ -5,7 +5,6 @@ import cloud from '@/assets/images/hero/cloud.webp';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import IconTile from '@/components/ui/IconTile';
-import Reveal from '@/components/ui/Reveal';
 import SectionGlow from '@/components/ui/SectionGlow';
 import SectionHeading from '@/components/ui/SectionHeading';
 import styles from './Careers.module.css';
@@ -20,16 +19,16 @@ export default function Careers() {
         <SectionHeading title={title} />
 
         <div className={styles.top}>
-          <Reveal className={styles.photo}>
+          <div className={styles.photo}>
             <img src={image} alt="Valien team at work" loading="lazy" />
-          </Reveal>
-          <Reveal delay={120} className={styles.quoteCard}>
+          </div>
+          <div className={styles.quoteCard}>
             <img src={cloud} alt="" className={styles.cloud} aria-hidden="true" />
             <blockquote>
               <p className={styles.quote}>“{quote}”</p>
               <footer>{quoteAuthor}</footer>
             </blockquote>
-          </Reveal>
+          </div>
         </div>
 
         <ul className={styles.jobs}>

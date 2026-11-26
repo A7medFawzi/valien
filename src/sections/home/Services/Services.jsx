@@ -16,24 +16,49 @@ import Card from '@/components/ui/Card';
 import Icon from '@/components/ui/Icon';
 import IconTile from '@/components/ui/IconTile';
 import Marquee from '@/components/ui/Marquee';
-import Reveal from '@/components/ui/Reveal';
 import SectionGlow from '@/components/ui/SectionGlow';
 import styles from './Services.module.css';
 
 const orbitIcons = [CalendarCheck, EnvelopeSimple, ChatsCircle, UserFocus];
 
+/*
+ * Workflow diagram (Landeros "AI-Automation" orbit): a mint band, four app nodes on it,
+ * and curved connectors from every node to the label. Drawn in a fixed 520×280 viewBox.
+ */
+const ORBIT = { cx: 260, cy: 300, outer: 230, inner: 150, nodeRadius: 190 };
+const LABEL = { x: 260, y: 236 };
+const orbitNodes = [-162, -126, -58, -22].map((deg, i) => {
+  const rad = (deg * Math.PI) / 180;
+  return {
+    Icon: orbitIcons[i],
+    x: ORBIT.cx + ORBIT.nodeRadius * Math.cos(rad),
+    y: ORBIT.cy + ORBIT.nodeRadius * Math.sin(rad),
+  };
+});
+
 function WorkflowVisual() {
   return (
-    <div className={styles.orbit} aria-hidden="true">
-      <div className={styles.orbitRing} />
-      <div className={styles.orbitCore} />
-      {orbitIcons.map((OrbitIcon, i) => (
-        <span key={i} className={styles.orbitNode} style={{ '--i': i }}>
-          <OrbitIcon size={24} weight="duotone" />
-        </span>
+    <svg className={styles.orbit} viewBox="0 30 520 260" aria-hidden="true">
+      <circle cx={ORBIT.cx} cy={ORBIT.cy} r={ORBIT.outer} className={styles.orbitBand} />
+      <circle cx={ORBIT.cx} cy={ORBIT.cy} r={ORBIT.inner} className={styles.orbitCore} />
+      {orbitNodes.map(({ x, y }, i) => (
+        <path
+          key={i}
+          className={styles.orbitLink}
+          d={`M ${x} ${y} Q ${(x + LABEL.x) / 2} ${LABEL.y - 10} ${LABEL.x} ${LABEL.y}`}
+        />
       ))}
-      <span className={styles.orbitLabel}>AI-Automation</span>
-    </div>
+      {orbitNodes.map(({ Icon, x, y }, i) => (
+        <g key={i} className={styles.orbitNode} style={{ '--i': i }}>
+          <circle cx={x} cy={y} r="26" className={styles.orbitNodeHalo} />
+          <circle cx={x} cy={y} r="19" className={styles.orbitNodeDot} />
+          <Icon x={x - 12} y={y - 12} width="24" height="24" weight="duotone" />
+        </g>
+      ))}
+      <foreignObject x={LABEL.x - 70} y={LABEL.y - 22} width="140" height="44">
+        <span className={styles.orbitLabel}>AI-Automation</span>
+      </foreignObject>
+    </svg>
   );
 }
 
@@ -54,9 +79,16 @@ function CodeVisual() {
         </span>
       </div>
       <div className={styles.editorBody}>
-        <pre className={styles.code}>
-          <code>{lines.concat(lines).join('\n')}</code>
-        </pre>
+        <ol className={styles.gutter}>
+          {[1, 2, 3, 4, 5, 6].map((n) => (
+            <li key={n}>{n}</li>
+          ))}
+        </ol>
+        <div className={styles.codeWindow}>
+          <pre className={styles.code}>
+            <code>{lines.concat(lines).join('\n')}</code>
+          </pre>
+        </div>
       </div>
     </div>
   );
@@ -115,19 +147,19 @@ export default function Services() {
             ))}
           </ul>
           <div className={styles.features}>
-            {features.map((f, i) => (
-              <Reveal key={f.title} delay={i * 120}>
+            {features.map((f) => (
+              <div key={f.title}>
                 <Card className={styles.feature}>
                   <IconTile name={f.icon} />
                   <h3>{f.title}</h3>
                   <p>{f.text}</p>
                 </Card>
-              </Reveal>
+              </div>
             ))}
           </div>
         </div>
 
-        <Reveal>
+        <div>
           <Card className={styles.panel}>
             <h3>{workflow.title}</h3>
             <p>{workflow.text}</p>
@@ -135,9 +167,9 @@ export default function Services() {
               <WorkflowVisual />
             </div>
           </Card>
-        </Reveal>
+        </div>
 
-        <Reveal>
+        <div>
           <Card className={styles.panel}>
             <h3>{customModels.title}</h3>
             <p>{customModels.text}</p>
@@ -145,9 +177,9 @@ export default function Services() {
               <CodeVisual />
             </div>
           </Card>
-        </Reveal>
+        </div>
 
-        <Reveal delay={120}>
+        <div>
           <Card className={styles.panel}>
             <h3>{chatbots.title}</h3>
             <p>{chatbots.text}</p>
@@ -155,7 +187,7 @@ export default function Services() {
               <ChatVisual />
             </div>
           </Card>
-        </Reveal>
+        </div>
       </div>
 
       <Marquee duration={40} className={styles.tags}>
