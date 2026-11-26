@@ -1,0 +1,64 @@
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: clamp(3rem, 2rem + 5vw, 5rem) 1.5rem;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(180deg, #d8fbe2 0%, #eef3ef 100%);
+  box-shadow:
+    var(--shadow-card),
+    0 4px 0 rgb(150 255 176 / 0.5);
+}
+
+.panel > :not(.cloud) {
+  position: relative;
+}
+
+.cloud {
+  position: absolute;
+  width: 420px;
+  opacity: 0.8;
+  filter: brightness(1.4);
+  pointer-events: none;
+}
+
+.cloudTop {
+  top: -40px;
+  left: 18%;
+}
+
+.cloudBottom {
+  bottom: -110px;
+  right: 8%;
+}
+
+.title {
+  font-size: var(--text-2xl);
+}
+
+.description {
+  max-width: 500px;
+  color: var(--color-text-muted);
+}
+
+.perks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.perks li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: rgb(255 255 255 / 0.6);
+  font-size: var(--text-sm);
+}

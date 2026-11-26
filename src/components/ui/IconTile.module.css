@@ -1,0 +1,18 @@
+.tile {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.mint {
+  background: var(--color-mint-soft);
+  border: 1px solid rgb(150 255 176 / 0.6);
+}
+
+.white {
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+}

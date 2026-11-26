@@ -1,0 +1,59 @@
+.page {
+  padding-top: clamp(6.5rem, 5rem + 4vw, 7.5rem);
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: clamp(4rem, 3rem + 6vw, 8rem) 1.5rem;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(180deg, #d8fbe2 0%, #efefef 100%);
+  box-shadow: var(--shadow-card);
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../assets/images/textures/dots.svg') top / 48px auto;
+  mix-blend-mode: multiply;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.panel > :not(.cloud) {
+  position: relative;
+}
+
+.cloud {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 520px;
+  opacity: 0.7;
+  filter: brightness(1.4);
+  pointer-events: none;
+}
+
+.code {
+  font-family: var(--font-label);
+  font-size: clamp(6rem, 4rem + 10vw, 11rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.title {
+  font-size: var(--text-2xl);
+}
+
+.text {
+  max-width: 420px;
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
+}

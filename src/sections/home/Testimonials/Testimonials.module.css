@@ -1,0 +1,79 @@
+.marquee {
+  --gap: 1.5rem;
+  margin-top: 3.5rem;
+  padding-block: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: min(450px, 82vw);
+  padding: 1.5rem;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-gray-300);
+}
+
+.author img {
+  width: 76px;
+  height: 76px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  box-shadow: var(--shadow-card);
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  line-height: 1.2;
+}
+
+.company {
+  margin-top: 0.4rem;
+}
+
+.source {
+  margin-left: auto;
+  align-self: flex-start;
+}
+
+.quote {
+  padding-top: 1.5rem;
+  color: var(--color-ink-80);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  color: var(--color-text-muted);
+}
+
+.summary strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.avatars {
+  display: flex;
+}
+
+.avatars img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--color-white);
+  object-fit: cover;
+  box-shadow: var(--shadow-card);
+}
+
+.avatars img + img {
+  margin-left: -8px;
+}
